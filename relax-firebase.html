@@ -20,7 +20,7 @@
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
   import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp, where, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-  import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
   const firebaseConfig = {
     apiKey: "AIzaSyDAbiBJEGWNuuwIa4yv4lPhqEjjK6VtgIs",
     authDomain: "relax-23fac.firebaseapp.com",
@@ -40,12 +40,17 @@
   window._auth = auth;
   window._fbModules = { collection, addDoc, getDocs, query, orderBy, serverTimestamp, where, doc, updateDoc, deleteDoc };
 
-  onAuthStateChanged(auth, user => {
+  // Handle redirect result (for GitHub Pages)
+getRedirectResult(auth).then(result => {
+  if (result?.user && window.onUserChanged) window.onUserChanged(result.user);
+}).catch(e => console.log('redirect:', e.message));
+
+onAuthStateChanged(auth, user => {
     window._currentUser = user;
     if (window.onUserChanged) window.onUserChanged(user);
   });
 
-  window._googleLogin = () => signInWithPopup(auth, provider);
+  window._googleLogin = () => signInWithRedirect(auth, provider);
   window._googleLogout = () => signOut(auth);
   window._emailRegister = (email, password, name) => createUserWithEmailAndPassword(auth, email, password).then(async (uc) => { await updateProfile(uc.user, {displayName: name}); return uc; });
   window._emailLogin = (email, password) => signInWithEmailAndPassword(auth, email, password);
@@ -1460,6 +1465,23 @@ async function loadListings() {
     console.error(e);
     document.getElementById('listingsGrid').innerHTML=`<div class="empty-state" style="grid-column:1/-1"><p style="font-size:2rem">⚠️</p><p style="margin-top:1rem">خطأ في Firebase</p></div>`;
   }
+}
+
+// Type images/colors
+const typeImages = {
+  'رياضي':   {bg:'linear-gradient(135deg,#1A3A5C,#2E6DA4)', emoji:'💪'},
+  'استرخاء': {bg:'linear-gradient(135deg,#0d7377,#14a085)', emoji:'🌿'},
+  'طب':      {bg:'linear-gradient(135deg,#1a1a2e,#16213e)', emoji:'🏥'},
+  'سبا':     {bg:'linear-gradient(135deg,#6a0572,#ab47bc)', emoji:'🧖'},
+  'تايلاندي':{bg:'linear-gradient(135deg,#8b0000,#c0392b)', emoji:'🇹🇭'},
+};
+
+function getDefaultImg(type, title) {
+  const t = typeImages[type] || {bg:'linear-gradient(135deg,#1A3A5C,#2E6DA4)', emoji:'💆'};
+  return `<div class="card-img-placeholder" style="background:${t.bg};display:flex;flex-direction:column;align-items:center;justify-content:center;height:180px;gap:6px">
+    <span style="font-size:2.5rem">${t.emoji}</span>
+    <span style="color:rgba(255,255,255,0.8);font-size:0.8rem;font-weight:700;text-align:center;padding:0 8px">${title||''}</span>
+  </div>`;
 }
 
 // Sort helper (must be before renderListings)
