@@ -378,7 +378,72 @@
   .negotiable-badge{background:#e8f5e9;color:#2e7d32;font-size:0.72rem;font-weight:700;border-radius:6px;padding:2px 6px;}
   .views-badge{font-size:0.72rem;color:#888;display:inline-flex;align-items:center;gap:3px;}
 
-  /* ===== AUTH MODAL ===== */
+  /* ===== PWA BANNER ===== */
+  .pwa-banner{display:none;position:fixed;bottom:0;left:0;right:0;background:linear-gradient(135deg,#3D3529,#7B9E7A);color:white;padding:0.9rem 1.2rem;z-index:9999;align-items:center;justify-content:space-between;gap:0.8rem;box-shadow:0 -4px 20px rgba(0,0,0,0.2);}
+  .pwa-banner span{font-family:'Tajawal',sans-serif;font-size:0.9rem;font-weight:600;flex:1;}
+  .pwa-install-btn{background:#C8986A;color:white;border:none;border-radius:20px;padding:0.5rem 1.2rem;font-family:'Tajawal',sans-serif;font-weight:700;font-size:0.88rem;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+
+  /* ===== APP DOWNLOAD SECTION ===== */
+  .app-download-section{background:linear-gradient(135deg,#2C2318 0%,#4A3D2E 50%,#5C7A5A 100%);padding:1.5rem 1.5rem;position:relative;overflow:hidden;}
+  .app-download-section::before{content:'🌿';position:absolute;font-size:8rem;opacity:0.06;top:-20px;left:-20px;pointer-events:none;}
+  .app-download-section::after{content:'🌿';position:absolute;font-size:8rem;opacity:0.06;bottom:-20px;right:-20px;pointer-events:none;transform:rotate(180deg);}
+  .app-download-inner{max-width:600px;margin:0 auto;display:flex;align-items:center;gap:1.2rem;justify-content:space-between;}
+  .app-download-text{color:white;flex:1;}
+  .app-download-text h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:#E8C49A;margin-bottom:0.2rem;font-style:italic;}
+  .app-download-text p{font-size:0.82rem;color:rgba(253,250,244,0.7);}
+  .app-download-btn{background:linear-gradient(135deg,#C8986A,#A07550);color:white;border:none;border-radius:25px;padding:0.7rem 1.4rem;font-family:'Tajawal',sans-serif;font-weight:700;font-size:0.9rem;cursor:pointer;white-space:nowrap;box-shadow:0 4px 15px rgba(200,152,106,0.4);transition:all 0.2s;flex-shrink:0;}
+  .app-download-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(200,152,106,0.5);}
+  @media(max-width:480px){.app-download-inner{flex-direction:column;text-align:center;gap:0.8rem;}.app-download-btn{width:100%;}}
+
+  /* ===== DARK MODE ===== */
+  body.dark-mode {
+    --bg:#1A1612; --white:#221E19; --navy:#E8DFD0; --blue:#C8B89A;
+    --sky:#A8C5A0; --sky-light:#9DB89A; --green:#7BAF78;
+    --gold:#C8986A; --shadow:rgba(0,0,0,0.4);
+    --beige:#2A2420; --cream:#252018; --warm:#C8B89A;
+    background:#1A1612; color:#E8DFD0;
+  }
+  body.dark-mode header{background:linear-gradient(135deg,#0F0D0A 0%,#2A2218 100%);border-bottom-color:rgba(200,152,106,0.2);}
+  body.dark-mode .filters-section,
+  body.dark-mode .filters-row2,
+  body.dark-mode .fav-tab{background:#1E1A15;border-color:rgba(200,152,106,0.1);}
+  body.dark-mode .filter-chip{background:#2A2418;border-color:rgba(200,152,106,0.2);color:#C8B89A;}
+  body.dark-mode .filter-chip:hover,
+  body.dark-mode .filter-chip.active{background:#3D3529;color:#E8C49A;}
+  body.dark-mode .filter-select{background:#2A2418;color:#C8B89A;border-color:rgba(200,152,106,0.2);}
+  body.dark-mode .card{background:#252018;border-color:rgba(200,152,106,0.12);}
+  body.dark-mode .card-img-placeholder{background:linear-gradient(135deg,#2A2418,#1E1A15);}
+  body.dark-mode .card-title{color:#E8DFD0;}
+  body.dark-mode .card-footer{border-color:rgba(200,152,106,0.1);}
+  body.dark-mode .modal{background:#252018;}
+  body.dark-mode .detail-modal{background:#252018;}
+  body.dark-mode .dash-modal{background:#252018;}
+  body.dark-mode .msg-modal{background:#252018;}
+  body.dark-mode .map-modal{background:#252018;}
+  body.dark-mode .modal-body{background:#252018;}
+  body.dark-mode .form-group input,
+  body.dark-mode .form-group select,
+  body.dark-mode .form-group textarea{background:#1E1A15;border-color:rgba(200,152,106,0.2);color:#E8DFD0;}
+  body.dark-mode .form-group label{color:#C8B89A;}
+  body.dark-mode .search-bar{background:rgba(37,32,24,0.95);}
+  body.dark-mode .search-bar input{color:#E8DFD0;}
+  body.dark-mode .main{background:#1A1612;}
+  body.dark-mode .fav-toggle{background:#2A2418;border-color:rgba(200,152,106,0.2);color:#C8B89A;}
+  body.dark-mode .fav-toggle.active{background:#3D3529;color:#E8C49A;}
+  body.dark-mode .sort-btn{background:#2A2418;border-color:rgba(200,152,106,0.2);color:#C8B89A;}
+  body.dark-mode .sort-btn.active{background:#3D3529;color:#E8C49A;}
+  body.dark-mode .msg-bubble.theirs{background:#2A2418;color:#E8DFD0;}
+  body.dark-mode .msg-input{background:#1E1A15;border-color:rgba(200,152,106,0.2);color:#E8DFD0;}
+  body.dark-mode .stat-box{background:#1E1A15;}
+  body.dark-mode .dash-ad-item{background:#1E1A15;border-color:rgba(200,152,106,0.15);}
+  body.dark-mode .user-dropdown,
+  body.dark-mode .lang-dropdown{background:#252018;}
+  body.dark-mode .user-menu-item,
+  body.dark-mode .lang-opt{color:#E8DFD0;border-color:#2A2418;}
+  body.dark-mode .user-menu-item:hover,
+  body.dark-mode .lang-opt:hover{background:#2A2418;}
+  body.dark-mode footer{background:linear-gradient(135deg,#0F0D0A,#1E1A15);}
+
   .auth-tabs{display:flex;gap:0;margin-bottom:1.2rem;background:var(--beige);border-radius:12px;padding:4px;}
   .auth-tab{flex:1;text-align:center;padding:0.55rem 0.5rem;border-radius:10px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.88rem;font-weight:600;color:var(--warm);transition:all 0.2s;}
   .auth-tab.active{background:white;color:var(--navy);box-shadow:0 2px 8px rgba(61,53,41,0.12);}
@@ -424,6 +489,36 @@ if ('serviceWorker' in navigator) {
 </head>
 <body>
 
+<!-- SPLASH LOGIN SCREEN (PWA only) -->
+<div id="splashScreen" style="display:none;position:fixed;inset:0;background:linear-gradient(135deg,#2C2318,#4A3D2E,#5C7A5A);z-index:99999;flex-direction:column;align-items:center;justify-content:center;padding:2rem;">
+  <div style="text-align:center;margin-bottom:2.5rem;">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:#E8C49A;letter-spacing:6px;font-style:italic;text-shadow:0 4px 20px rgba(200,152,106,0.4)">Relax</div>
+    <div style="color:rgba(232,223,208,0.7);font-size:0.85rem;letter-spacing:3px;font-family:'Tajawal',sans-serif;margin-top:0.3rem">منصة إعلانات التدليك</div>
+  </div>
+  <div style="background:rgba(255,255,255,0.07);border-radius:20px;padding:2rem 1.8rem;width:100%;max-width:360px;border:1px solid rgba(200,152,106,0.2);">
+    <div style="display:flex;gap:0;margin-bottom:1.5rem;background:rgba(0,0,0,0.2);border-radius:12px;padding:4px;">
+      <div id="splashTabLogin" onclick="switchSplashTab('login')" style="flex:1;text-align:center;padding:0.5rem;border-radius:10px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;font-weight:700;color:white;background:rgba(200,152,106,0.6);">تسجيل الدخول</div>
+      <div id="splashTabRegister" onclick="switchSplashTab('register')" style="flex:1;text-align:center;padding:0.5rem;border-radius:10px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;color:rgba(255,255,255,0.6);">إنشاء حساب</div>
+    </div>
+    <button onclick="doLogin()" style="width:100%;background:white;border:none;border-radius:12px;padding:0.8rem;font-family:'Tajawal',sans-serif;font-size:0.9rem;font-weight:700;color:#3D3529;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.6rem;margin-bottom:1rem;">
+      <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 0 0 2.38-5.88c0-.57-.05-.66-.15-1.18z"/><path fill="#34A853" d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2a4.8 4.8 0 0 1-7.18-2.54H1.83v2.07A8 8 0 0 0 8.98 17z"/><path fill="#FBBC05" d="M4.5 10.52a4.8 4.8 0 0 1 0-3.04V5.41H1.83a8 8 0 0 0 0 7.18l2.67-2.07z"/><path fill="#EA4335" d="M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 0 0 1.83 5.4L4.5 7.49a4.77 4.77 0 0 1 4.48-3.3z"/></svg>
+      الدخول بـ Google
+    </button>
+    <div style="text-align:center;color:rgba(255,255,255,0.4);font-size:0.8rem;margin-bottom:0.8rem;">أو</div>
+    <div id="splashNameField" style="display:none;margin-bottom:0.7rem;">
+      <input type="text" id="splashName" placeholder="الاسم الكامل" style="width:100%;background:rgba(255,255,255,0.1);border:1px solid rgba(200,152,106,0.3);border-radius:10px;padding:0.7rem 1rem;font-family:'Tajawal',sans-serif;font-size:0.9rem;color:white;outline:none;">
+    </div>
+    <input type="email" id="splashEmail" placeholder="البريد الإلكتروني" style="width:100%;background:rgba(255,255,255,0.1);border:1px solid rgba(200,152,106,0.3);border-radius:10px;padding:0.7rem 1rem;font-family:'Tajawal',sans-serif;font-size:0.9rem;color:white;outline:none;margin-bottom:0.7rem;">
+    <input type="password" id="splashPassword" placeholder="كلمة المرور" style="width:100%;background:rgba(255,255,255,0.1);border:1px solid rgba(200,152,106,0.3);border-radius:10px;padding:0.7rem 1rem;font-family:'Tajawal',sans-serif;font-size:0.9rem;color:white;outline:none;margin-bottom:1rem;">
+    <button onclick="submitSplashAuth()" id="splashSubmitBtn" style="width:100%;background:linear-gradient(135deg,#C8986A,#A07550);border:none;border-radius:12px;padding:0.85rem;font-family:'Tajawal',sans-serif;font-weight:700;font-size:1rem;color:white;cursor:pointer;">تسجيل الدخول</button>
+    <div style="text-align:center;margin-top:0.8rem;">
+      <button onclick="openSplashForgot()" style="background:none;border:none;color:rgba(200,152,106,0.8);cursor:pointer;font-family:Tajawal;font-size:0.82rem;text-decoration:underline" id="splashForgotBtn">نسيت كلمة المرور؟</button>
+    </div>
+  </div>
+  <p style="color:rgba(232,223,208,0.4);font-size:0.75rem;margin-top:1.5rem;text-align:center;">يمكنك الاستمرار كزائر</p>
+  <button onclick="document.getElementById('splashScreen').style.display='none'" style="background:none;border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:0.4rem 1.2rem;color:rgba(255,255,255,0.6);font-family:'Tajawal',sans-serif;font-size:0.82rem;cursor:pointer;margin-top:0.5rem;">تصفح بدون تسجيل</button>
+</div>
+
 <header>
   <div class="header-inner">
     <div class="logo" onclick="resetFilters()">Relax<span id="logoSub">منصة إعلانات التدليك</span></div>
@@ -465,6 +560,7 @@ if ('serviceWorker' in navigator) {
       </div>
 
       <button class="map-tab-btn" onclick="openMapModal()" id="btnMap">🗺️</button>
+      <button class="map-tab-btn" onclick="installPWA()" id="btnInstall" title="تحميل التطبيق">📲</button>
       <button class="btn-pro-h" onclick="openProModal()" id="btnPro">⭐ Relax Pro</button>
       <button class="btn-post-h" onclick="openPostModal()" id="btnPost">+ نشر إعلان</button>
 
@@ -934,12 +1030,7 @@ service cloud.firestore {
   <button class="cookie-accept" onclick="acceptCookies()">موافق ✓</button>
 </div>
 
-<!-- PWA INSTALL BANNER -->
-<div class="pwa-banner" id="pwaBanner">
-  <span>📱 ثبت التطبيق على هاتفك مجاناً!</span>
-  <button class="pwa-install-btn" onclick="installPWA()">تثبيت</button>
-  <button onclick="document.getElementById('pwaBanner').style.display='none'" style="background:none;border:none;color:white;cursor:pointer;font-size:1.2rem">✕</button>
-</div>
+<!-- PWA INSTALL BANNER REMOVED -->
 
 <!-- PROFILE MODAL -->
 <div class="modal-overlay" id="profileModal" onclick="if(event.target===this)this.classList.remove('open')">
@@ -1858,6 +1949,57 @@ function showToast(msg,isError=false){
 }
 
 
+// ===================== SPLASH SCREEN =====================
+let splashMode = 'login';
+function switchSplashTab(mode) {
+  splashMode = mode;
+  const isReg = mode === 'register';
+  document.getElementById('splashTabLogin').style.background = isReg ? 'transparent' : 'rgba(200,152,106,0.6)';
+  document.getElementById('splashTabLogin').style.color = isReg ? 'rgba(255,255,255,0.6)' : 'white';
+  document.getElementById('splashTabRegister').style.background = isReg ? 'rgba(200,152,106,0.6)' : 'transparent';
+  document.getElementById('splashTabRegister').style.color = isReg ? 'white' : 'rgba(255,255,255,0.6)';
+  document.getElementById('splashNameField').style.display = isReg ? 'block' : 'none';
+  document.getElementById('splashSubmitBtn').textContent = isReg ? 'إنشاء حساب ✨' : 'تسجيل الدخول';
+  document.getElementById('splashForgotBtn').style.display = isReg ? 'none' : 'inline';
+}
+async function submitSplashAuth() {
+  const email = document.getElementById('splashEmail').value.trim();
+  const password = document.getElementById('splashPassword').value;
+  const btn = document.getElementById('splashSubmitBtn');
+  if (!email || !password) { showToast('⚠️ أدخل الإيميل وكلمة المرور', true); return; }
+  if (!window._firebaseReady) { showToast('⚠️ انتظر قليلاً...', true); return; }
+  btn.disabled = true;
+  btn.textContent = '⏳ جاري...';
+  try {
+    if (splashMode === 'register') {
+      const name = document.getElementById('splashName').value.trim() || email.split('@')[0];
+      await window._emailRegister(email, password, name);
+      showToast('✅ تم إنشاء الحساب!');
+    } else {
+      await window._emailLogin(email, password);
+      showToast('✅ مرحباً بك!');
+    }
+    document.getElementById('splashScreen').style.display = 'none';
+  } catch(e) {
+    const msgs = {
+      'auth/email-already-in-use': '⚠️ الإيميل مستخدم من قبل',
+      'auth/weak-password': '⚠️ كلمة المرور قصيرة (6 أحرف minimum)',
+      'auth/wrong-password': '⚠️ كلمة المرور غلط',
+      'auth/user-not-found': '⚠️ الحساب غير موجود',
+      'auth/invalid-credential': '⚠️ الإيميل أو كلمة المرور غلط',
+    };
+    showToast(msgs[e.code] || '❌ ' + e.message, true);
+  }
+  btn.disabled = false;
+  switchSplashTab(splashMode);
+}
+function openSplashForgot() {
+  const email = document.getElementById('splashEmail').value.trim();
+  if (!email) { showToast('⚠️ أدخل الإيميل أولاً', true); return; }
+  if (!window._firebaseReady) return;
+  window._resetPassword(email).then(() => showToast('✅ تم إرسال رابط الاسترداد')).catch(() => showToast('❌ الإيميل غير موجود', true));
+}
+
 // ===================== AUTH =====================
 let currentUser = null;
 let authMode = 'login';
@@ -1919,6 +2061,11 @@ window.onUserChanged = function(user) {
   currentUser = user;
   const loginBtn = document.getElementById('loginBtn');
   const userMenuWrap = document.getElementById('userMenuWrap');
+  const splash = document.getElementById('splashScreen');
+
+  // Hide splash once Firebase responds
+  if (splash) splash.style.display = 'none';
+
   if (user) {
     loginBtn.style.display = 'none';
     userMenuWrap.style.display = 'flex';
@@ -1929,9 +2076,7 @@ window.onUserChanged = function(user) {
     document.getElementById('dashEmail').textContent = user.email || '';
     checkAdmin(user);
     setTimeout(checkUnreadMessages, 2000);
-    // Poll for new messages every 60s
     setInterval(checkUnreadMessages, 60000);
-    // Ask for push notifications
     if (localStorage.getItem('relax_notif') !== '1') {
       setTimeout(requestNotifPermission, 3000);
     }
@@ -1939,6 +2084,11 @@ window.onUserChanged = function(user) {
     loginBtn.style.display = 'flex';
     loginBtn.onclick = openAuthModal;
     userMenuWrap.style.display = 'none';
+    // Show splash login screen if opened as PWA
+    const isPWA = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+    if (isPWA && splash) {
+      splash.style.display = 'flex';
+    }
   }
 };
 
