@@ -1,39 +1,78 @@
-// Relax PWA - Service Worker v1
-const CACHE_NAME = 'relax-v2';
-const ASSETS = ['./relax-firebase.html', './'];
+// Relax PWA - Service Worker v1.2
+const CACHE_NAME = 'relax-v1.2';
+const OFFLINE_URL = './relax-firebase.html';
 
-self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(ASSETS).catch(()=>{})));
+const PRECACHE = [
+  './relax-firebase.html',
+];
+
+// Install — cache core files
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(PRECACHE))
+  );
   self.skipWaiting();
 });
 
-self.addEventListener('activate', e => {
-  e.waitUntil(caches.keys().then(keys =>
-    Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
-  ));
+// Activate — clean old caches
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
+    )
+  );
   self.clients.claim();
 });
 
-self.addEventListener('fetch', e => {
-  const url = new URL(e.request.url);
-  if (url.hostname !== location.hostname) return;
-  e.respondWith(
-    caches.match(e.request).then(cached => {
-      return cached || fetch(e.request).then(res => {
-        if (res.ok) {
-          const clone = res.clone();
-          caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
+// Fetch — network first, fallback to cache
+self.addEventListener('fetch', event => {
+  // Skip non-GET and cross-origin requests
+  if (event.request.method !== 'GET') return;
+  if (!event.request.url.startsWith(self.location.origin)) return;
+
+  event.respondWith(
+    fetch(event.request)
+      .then(response => {
+        // Cache successful responses
+        if (response && response.status === 200) {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
         }
-        return res;
-      }).catch(() => caches.match('./relax-firebase.html'));
-    })
+        return response;
+      })
+      .catch(() => {
+        // Offline fallback
+        return caches.match(event.request).then(cached => {
+          return cached || caches.match(OFFLINE_URL);
+        });
+      })
   );
 });
 
-self.addEventListener('push', e => {
-  const d = e.data?.json() || {title:'Relax', body:'إشعار جديد'};
-  e.waitUntil(self.registration.showNotification(d.title, {
-    body: d.body, dir: 'rtl', lang: 'ar',
-    icon: 'https://raw.githubusercontent.com/amarir2019buz-ctrl/Relax---Massage/main/icon.svg'
-  }));
+// Push notifications
+self.addEventListener('push', event => {
+  const data = event.data?.json() || {};
+  const title = data.title || 'Relax 🌿';
+  const options = {
+    body: data.body || 'لديك رسالة جديدة',
+    icon: data.icon || './icon-192.png',
+    badge: './icon-192.png',
+    data: data.url || './',
+    dir: 'rtl',
+    lang: 'ar',
+  };
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+
+// Notification click → open app
+self.addEventListener('notificationclick', event => {
+  event.notification.close();
+  event.waitUntil(
+    clients.matchAll({ type: 'window' }).then(list => {
+      for (const client of list) {
+        if (client.url && 'focus' in client) return client.focus();
+      }
+      if (clients.openWindow) return clients.openWindow(event.notification.data || './');
+    })
+  );
 });
