@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
   <url>
     <loc>https://amarir2019buz-ctrl.github.io/Relax---Massage/relax-firebase.html</loc>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2025-03-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://amarir2019buz-ctrl.github.io/Relax---Massage/relax-firebase.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://amarir2019buz-ctrl.github.io/Relax---Massage/relax-firebase.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://amarir2019buz-ctrl.github.io/Relax---Massage/relax-firebase.html?lang=en"/>
   </url>
+
 </urlset>

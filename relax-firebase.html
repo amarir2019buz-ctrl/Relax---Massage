@@ -814,7 +814,116 @@
   .dark-mode .slot-btn.selected{background:var(--navy);color:var(--gold-light);}
   .dark-mode footer{background:linear-gradient(135deg,#0D0A08,#1A1410);}
 
-  /* ===== RESPONSIVE ===== */
+  /* ===== PROFILE MODAL ===== */
+  .profile-modal{max-width:600px;overflow:hidden;max-height:92vh;display:flex;flex-direction:column;}
+  .profile-header{
+    background:linear-gradient(150deg,#2C2219,#3D3529,#7B9E7A);
+    padding:2rem 1.5rem 1.5rem;text-align:center;flex-shrink:0;position:relative;
+  }
+  .profile-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(200,152,106,0.3),transparent);}
+  .profile-avatar{width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid rgba(200,152,106,0.5);box-shadow:0 4px 20px rgba(0,0,0,0.3);margin:0 auto;display:block;}
+  .profile-avatar-placeholder{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,0.1);border:3px solid rgba(200,152,106,0.3);display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto;}
+  .profile-name{
+    font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-style:italic;
+    background:linear-gradient(135deg,#E8C49A,#C8986A);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    margin-top:0.6rem;font-weight:600;
+  }
+  .profile-stats{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    background:white;border-bottom:1px solid rgba(232,223,208,0.5);flex-shrink:0;
+  }
+  .profile-stat{text-align:center;padding:0.9rem 0.5rem;border-left:1px solid rgba(232,223,208,0.5);}
+  .profile-stat:last-child{border:none;}
+  .profile-stat-num{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold);font-weight:600;}
+  .profile-stat-lbl{font-size:0.72rem;color:var(--blue);opacity:0.65;margin-top:2px;}
+  .profile-modal .modal-body{overflow-y:auto;flex:1;}
+
+  /* My profile ad card */
+  .my-ad-card{
+    background:white;border-radius:14px;border:1px solid rgba(232,223,208,0.6);
+    margin-bottom:0.8rem;overflow:hidden;
+    transition:box-shadow var(--transition);
+  }
+  .my-ad-card:hover{box-shadow:0 4px 18px rgba(61,53,41,0.1);}
+  .my-ad-img{width:100%;height:140px;object-fit:cover;}
+  .my-ad-img-placeholder{width:100%;height:140px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;}
+  .my-ad-body{padding:0.85rem 1rem;}
+  .my-ad-title{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--navy);margin-bottom:0.25rem;}
+  .my-ad-meta{font-size:0.77rem;color:var(--blue);opacity:0.7;margin-bottom:0.6rem;}
+  .my-ad-actions{display:flex;gap:0.5rem;flex-wrap:wrap;}
+  .my-ad-btn{
+    border:none;border-radius:8px;padding:0.38rem 0.8rem;
+    font-family:'Tajawal';font-size:0.78rem;font-weight:700;cursor:pointer;
+    transition:all var(--transition);display:flex;align-items:center;gap:0.3rem;
+  }
+  .my-ad-btn:hover{transform:translateY(-1px);}
+  .my-ad-btn-edit{background:var(--cream);color:var(--navy);border:1px solid var(--beige);}
+  .my-ad-btn-edit:hover{background:var(--beige);}
+  .my-ad-btn-del{background:#fee2e2;color:#c0392b;}
+  .my-ad-btn-del:hover{background:#fecaca;}
+  .my-ad-btn-pro{background:linear-gradient(135deg,#C8986A,#A07550);color:white;box-shadow:0 2px 8px rgba(200,152,106,0.25);}
+  .my-ad-btn-view{background:linear-gradient(135deg,#7B9E7A,#5A8A56);color:white;}
+
+  /* Inline edit form inside my-ad-card */
+  .inline-edit-form{
+    padding:0.9rem 1rem;background:var(--cream);
+    border-top:1px solid rgba(232,223,208,0.5);
+    display:none;flex-direction:column;gap:0.6rem;
+  }
+  .inline-edit-form.open{display:flex;}
+  .inline-edit-form input,.inline-edit-form select,.inline-edit-form textarea{
+    width:100%;border:1.5px solid rgba(61,53,41,0.14);border-radius:9px;
+    padding:0.55rem 0.8rem;font-family:'Tajawal';font-size:0.88rem;
+    color:var(--navy);background:white;outline:none;
+    transition:border-color var(--transition);
+  }
+  .inline-edit-form input:focus,.inline-edit-form select:focus,.inline-edit-form textarea:focus{border-color:var(--gold);}
+  .inline-edit-form textarea{min-height:70px;resize:vertical;line-height:1.5;}
+  .inline-edit-actions{display:flex;gap:0.5rem;margin-top:0.2rem;}
+  .btn-save-edit{
+    flex:1;background:linear-gradient(135deg,#3D3529,#5C4E3C);color:var(--gold-light);
+    border:none;border-radius:9px;padding:0.6rem;
+    font-family:'Tajawal';font-weight:700;font-size:0.88rem;cursor:pointer;
+    transition:all var(--transition);
+  }
+  .btn-save-edit:hover{background:linear-gradient(135deg,#2C2219,#3D3529);}
+  .btn-cancel-edit{
+    background:transparent;color:var(--blue);border:1px solid rgba(61,53,41,0.15);
+    border-radius:9px;padding:0.6rem 1rem;
+    font-family:'Tajawal';font-size:0.88rem;cursor:pointer;transition:all var(--transition);
+  }
+  .btn-cancel-edit:hover{background:var(--beige);}
+
+  /* PWA install banner */
+  #pwaInstallBanner{
+    position:fixed;bottom:0;left:0;right:0;z-index:400;
+    background:linear-gradient(135deg,#2C2219,#3D3529);
+    padding:0.9rem 1.2rem;
+    display:flex;align-items:center;justify-content:space-between;gap:0.8rem;
+    border-top:1px solid rgba(200,152,106,0.25);
+    box-shadow:0 -4px 20px rgba(0,0,0,0.3);
+    transform:translateY(100%);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  #pwaInstallBanner.show{transform:translateY(0);}
+  #pwaInstallBanner .pwa-text{color:var(--gold-light);font-size:0.88rem;font-weight:700;font-family:'Tajawal';}
+  #pwaInstallBanner .pwa-sub{color:rgba(232,196,154,0.6);font-size:0.75rem;margin-top:2px;font-family:'Tajawal';}
+  #pwaInstallBanner .pwa-install-btn{
+    background:linear-gradient(135deg,#C8986A,#A07550);color:white;
+    border:none;border-radius:10px;padding:0.55rem 1.2rem;
+    font-family:'Tajawal';font-weight:700;font-size:0.88rem;cursor:pointer;
+    white-space:nowrap;box-shadow:0 3px 12px rgba(200,152,106,0.35);
+    transition:all var(--transition);
+  }
+  #pwaInstallBanner .pwa-install-btn:hover{transform:scale(1.03);}
+  #pwaInstallBanner .pwa-close{
+    background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);
+    color:rgba(255,255,255,0.7);border-radius:50%;width:28px;height:28px;
+    font-size:0.8rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+
+
   @media(max-width:768px){
     header{padding:0 0.7rem;height:auto;}
     .header-inner{height:auto;flex-wrap:wrap;padding:0.5rem 0;gap:0.4rem;}
@@ -1290,18 +1399,13 @@ if ('serviceWorker' in navigator) {
       .catch(err => console.warn('SW not available (preview mode):', err.message));
   });
 }
-// Capture PWA install prompt
-let deferredPrompt = null;
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  deferredPrompt = e;
-  // Show install button
-  const btn = document.getElementById('btnInstall');
-  if (btn) { btn.style.background = 'rgba(200,152,106,0.3)'; btn.title = 'تثبيت التطبيق ✓'; }
-});
+// PWA install is handled below in openMyProfile section
+
 </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4JCEJY300"></script>
+  <!-- Google AdSense - ضع Publisher ID ديالك هنا بعد الموافقة -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script> -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -1322,6 +1426,19 @@ window.addEventListener('beforeinstallprompt', e => {
   <link rel="sitemap" type="application/xml" href="sitemap.xml">
 </head>
 <body>
+
+<!-- PWA INSTALL BANNER -->
+<div id="pwaInstallBanner">
+  <div style="display:flex;align-items:center;gap:0.7rem;flex:1">
+    <span style="font-size:1.6rem">📲</span>
+    <div>
+      <div class="pwa-text">حمّل تطبيق Relax</div>
+      <div class="pwa-sub">تجربة أفضل كتطبيق على هاتفك</div>
+    </div>
+  </div>
+  <button class="pwa-install-btn" onclick="doInstallPWA()">تثبيت</button>
+  <button class="pwa-close" onclick="dismissPWABanner()">✕</button>
+</div>
 
 <!-- SPLASH LOGIN SCREEN (PWA only) -->
 <div id="splashScreen" style="display:none;position:fixed;inset:0;background:linear-gradient(135deg,#2C2318,#4A3D2E,#5C7A5A);z-index:99999;flex-direction:column;align-items:center;justify-content:center;padding:2rem;">
@@ -1405,6 +1522,7 @@ window.addEventListener('beforeinstallprompt', e => {
           <span id="userNameShort"></span> ▾
         </button>
         <div class="user-dropdown" id="userDropdown">
+          <div class="user-menu-item" onclick="openMyProfile();closeUserMenu()">👤 <span id="menuProfile">ملف شخصي</span></div>
           <div class="user-menu-item" onclick="openDashboard()">📊 <span id="menuDash">لوحة التحكم</span></div>
           <div class="user-menu-item" onclick="openAllMessages()" style="position:relative">💬 <span id="menuMsgs">رسائلي</span> <span id="unreadBadge" style="display:none;background:#e74c3c;color:white;border-radius:50%;width:18px;height:18px;font-size:0.7rem;font-weight:700;position:absolute;top:4px;left:4px;display:flex;align-items:center;justify-content:center">0</span></div>
           <div class="user-menu-item" id="adminMenuItem" style="display:none;color:#c0392b" onclick="openAdmin();closeUserMenu()">🛡️ <span>الإدارة</span></div>
@@ -1777,9 +1895,17 @@ window.addEventListener('beforeinstallprompt', e => {
         <li>📞 رقم هاتف بارز</li>
         <li>💬 دعم أولوي 24/7</li>
       </ul>
-      <div id="payMethodLabel" style="font-size:0.86rem;font-weight:700;color:var(--navy);margin-bottom:0.6rem;text-align:center">اختر طريقة الدفع:</div>
+      <div id="payMethodLabel" style="font-size:0.86rem;font-weight:700;color:var(--navy);margin-bottom:0.7rem;text-align:center">طريقة الاشتراك:</div>
+      <div style="background:var(--cream);border-radius:12px;padding:0.9rem;margin-bottom:0.8rem;border:1px solid rgba(232,223,208,0.7);font-size:0.83rem;color:var(--blue);line-height:1.8">
+        1️⃣ اضغط الزر أسفله<br>
+        2️⃣ ستنفتح رسالة WhatsApp جاهزة<br>
+        3️⃣ أرسلها وسيتم تفعيل PRO خلال دقائق ✅
+      </div>
       <div class="payment-methods">
-        <button class="pay-btn pay-skrill" style="grid-column:1/-1" onclick="payWithSkrill()">💜 الدفع عبر Skrill</button>
+        <button class="pay-btn" style="grid-column:1/-1;background:linear-gradient(135deg,#1DA851,#25D366);color:white;flex-direction:column;gap:4px;padding:1rem;border-radius:12px;box-shadow:0 4px 16px rgba(37,211,102,0.3)" onclick="payViaWhatsApp()">
+          <span style="font-size:1.05rem;font-weight:700">📱 طلب الاشتراك PRO عبر WhatsApp</span>
+          <span style="font-size:0.75rem;opacity:0.85;font-weight:400">+212 777 318 753 · الرد خلال دقائق</span>
+        </button>
       </div>
       <p id="secureLabel" style="font-size:0.73rem;color:var(--blue);text-align:center;margin-top:0.8rem;opacity:0.7">الدفع آمن ومشفر 100% 🔒</p>
     </div>
@@ -2017,13 +2143,44 @@ service cloud.firestore {
 <!-- PWA INSTALL BANNER REMOVED -->
 
 <!-- PROFILE MODAL -->
+<!-- MY PROFILE MODAL (personal - editable) -->
+<div class="modal-overlay" id="myProfileModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal profile-modal" style="max-width:640px">
+    <div class="profile-header" style="position:relative">
+      <button class="modal-close" onclick="document.getElementById('myProfileModal').classList.remove('open')" style="position:absolute;top:1rem;left:1rem;z-index:2;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);color:white;width:30px;height:30px;border-radius:50%;font-size:0.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
+      <div id="myProfileAvatarWrap" style="margin-bottom:0.7rem"></div>
+      <div class="profile-name" id="myProfileName">—</div>
+      <div style="font-size:0.8rem;opacity:0.65;margin-top:3px" id="myProfileEmail">—</div>
+      <div style="margin-top:0.8rem;display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap">
+        <button onclick="triggerAvatarUpload()" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);color:white;border-radius:8px;padding:0.35rem 0.8rem;font-family:Tajawal;font-size:0.8rem;cursor:pointer">📷 تغيير الصورة</button>
+        <input type="file" id="avatarFileInput" accept="image/*" style="display:none" onchange="uploadAvatar(event)">
+      </div>
+    </div>
+    <div class="profile-stats">
+      <div class="profile-stat"><div class="profile-stat-num" id="myProfileAdCount">0</div><div class="profile-stat-lbl">إعلانات</div></div>
+      <div class="profile-stat"><div class="profile-stat-num" id="myProfileRating">—</div><div class="profile-stat-lbl">تقييم</div></div>
+      <div class="profile-stat"><div class="profile-stat-num" id="myProfileViews">0</div><div class="profile-stat-lbl">مشاهدات</div></div>
+    </div>
+    <div class="modal-body">
+      <div style="font-weight:700;font-size:0.95rem;color:var(--navy);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.4rem">
+        📋 إعلاناتي
+        <button onclick="openPostModal();document.getElementById('myProfileModal').classList.remove('open')" style="margin-inline-start:auto;background:var(--sky);color:white;border:none;border-radius:8px;padding:0.3rem 0.8rem;font-family:Tajawal;font-size:0.78rem;cursor:pointer;font-weight:700">+ نشر إعلان</button>
+      </div>
+      <div id="myProfileAdsList">
+        <div style="text-align:center;padding:2rem;color:#aaa;font-style:italic">جاري التحميل...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PUBLIC PROFILE MODAL (other users - read only) -->
 <div class="modal-overlay" id="profileModal" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="modal profile-modal">
-    <button class="modal-close" onclick="document.getElementById('profileModal').classList.remove('open')" style="position:absolute;top:1rem;left:1rem;z-index:1">✕</button>
+    <button class="modal-close" onclick="document.getElementById('profileModal').classList.remove('open')" style="position:absolute;top:1rem;left:1rem;z-index:1;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);color:white;width:30px;height:30px;border-radius:50%;font-size:0.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
     <div class="profile-header">
       <div id="profileAvatarWrap"></div>
       <div class="profile-name" id="profileName">—</div>
-      <div style="font-size:0.82rem;opacity:0.7;margin-top:4px" id="profileMember">عضو منذ —</div>
+      <div style="font-size:0.82rem;opacity:0.7;margin-top:4px" id="profileMember">عضو</div>
     </div>
     <div class="profile-stats">
       <div class="profile-stat"><div class="profile-stat-num" id="profileAdCount">0</div><div class="profile-stat-lbl">إعلانات</div></div>
@@ -2099,29 +2256,153 @@ service cloud.firestore {
 </div>
 
 <!-- TERMS MODAL -->
+<!-- PRIVACY POLICY MODAL -->
+<div class="modal-overlay" id="privacyModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal" style="max-width:580px">
+    <div class="modal-header"><h2>🔒 سياسة الخصوصية</h2><button class="modal-close" onclick="document.getElementById('privacyModal').classList.remove('open')">✕</button></div>
+    <div class="modal-body" style="max-height:75vh;overflow-y:auto;line-height:1.8;font-size:0.88rem;color:var(--blue)">
+      <p style="color:var(--warm);font-size:0.8rem;margin-bottom:1rem">آخر تحديث: مارس 2025</p>
+      <h3 style="color:var(--navy);margin-bottom:0.5rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem">1. المعلومات التي نجمعها</h3>
+      <p>نجمع المعلومات التي تقدمها عند إنشاء حساب (الاسم، البريد الإلكتروني، الصورة الشخصية)، والمعلومات المتعلقة بإعلاناتك (رقم الهاتف، المدينة، الأسعار)، وبيانات الاستخدام (الصفحات التي تزورها، وقت الزيارة).</p>
+      <h3 style="color:var(--navy);margin:1rem 0 0.5rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem">2. كيف نستخدم معلوماتك</h3>
+      <p>نستخدم بياناتك لتشغيل الموقع وتحسين تجربتك، وإرسال إشعارات متعلقة بإعلاناتك وحجوزاتك، وتحليل أداء الموقع عبر Google Analytics.</p>
+      <h3 style="color:var(--navy);margin:1rem 0 0.5rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem">3. مشاركة البيانات</h3>
+      <p>لا نبيع معلوماتك الشخصية لأطراف ثالثة. نشارك فقط المعلومات الضرورية مع Firebase (Google) لتخزين البيانات، وGoogle Analytics لتحليل الزيارات.</p>
+      <h3 style="color:var(--navy);margin:1rem 0 0.5rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem">4. ملفات الارتباط (Cookies)</h3>
+      <p>نستخدم Cookies لحفظ إعداداتك (اللغة، الوضع الليلي، المفضلة) وتحسين تجربة التصفح. يمكنك تعطيلها من إعدادات متصفحك.</p>
+      <h3 style="color:var(--navy);margin:1rem 0 0.5rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem">5. حقوقك</h3>
+      <p>يحق لك الوصول إلى بياناتك وتعديلها وحذفها في أي وقت من خلال ملفك الشخصي. لحذف حسابك نهائياً، تواصل معنا عبر WhatsApp.</p>
+      <h3 style="color:var(--navy);margin:1rem 0 0.5rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem">6. أمان البيانات</h3>
+      <p>نستخدم Firebase Authentication وFirestore المشفرَين من Google لحماية بياناتك. جميع الاتصالات مشفرة بـ HTTPS.</p>
+      <h3 style="color:var(--navy);margin:1rem 0 0.5rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem">7. التواصل</h3>
+      <p>لأي استفسار حول خصوصيتك: <strong>amarir2019buz@gmail.com</strong> أو WhatsApp: <strong>+212 777 318 753</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- TERMS OF SERVICE MODAL -->
 <div class="modal-overlay" id="termsModal" onclick="if(event.target===this)this.classList.remove('open')">
-  <div class="modal" style="max-width:500px">
-    <div class="modal-header"><h2>📜 الشروط والخصوصية</h2><button class="modal-close" onclick="document.getElementById('termsModal').classList.remove('open')">✕</button></div>
-    <div class="modal-body" style="max-height:70vh;overflow-y:auto">
-      <h3 style="margin-bottom:0.5rem">شروط الاستخدام</h3>
-      <p style="font-size:0.85rem;color:#555;line-height:1.7">يلتزم المستخدمون بعدم نشر محتوى مخالف للقانون أو الأخلاق. يحق للإدارة حذف أي إعلان يخالف الشروط. الموقع غير مسؤول عن صحة المعلومات المنشورة.</p>
-      <h3 style="margin:1rem 0 0.5rem">سياسة الخصوصية</h3>
-      <p style="font-size:0.85rem;color:#555;line-height:1.7">نحافظ على خصوصية بياناتك. لا نبيع معلوماتك لأطراف ثالثة. نستخدم Firebase لتخزين البيانات بشكل آمن. يمكنك حذف حسابك في أي وقت.</p>
-      <h3 style="margin:1rem 0 0.5rem">ملفات الارتباط (Cookies)</h3>
-      <p style="font-size:0.85rem;color:#555;line-height:1.7">نستخدم cookies لتحسين تجربة التصفح وحفظ إعداداتك مثل اللغة المفضلة.</p>
+  <div class="modal" style="max-width:580px">
+    <div class="modal-header"><h2>📜 شروط الاستخدام</h2><button class="modal-close" onclick="document.getElementById('termsModal').classList.remove('open')">✕</button></div>
+    <div class="modal-body" style="max-height:75vh;overflow-y:auto;line-height:1.8;font-size:0.88rem;color:var(--blue)">
+      <p style="color:var(--warm);font-size:0.8rem;margin-bottom:1rem">آخر تحديث: مارس 2025</p>
+      <h3 style="color:var(--navy);margin-bottom:0.5rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem">1. قبول الشروط</h3>
+      <p>باستخدامك لمنصة Relax، فأنت توافق على هذه الشروط. إذا كنت لا توافق، يرجى عدم استخدام الموقع.</p>
+      <h3 style="color:var(--navy);margin:1rem 0 0.5rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem">2. شروط نشر الإعلانات</h3>
+      <p>يجب أن تكون المعلومات المنشورة صحيحة وحقيقية. يُمنع نشر محتوى مخالف للقانون أو الأخلاق أو الدين. يُمنع نشر إعلانات مكررة أو مضللة. يجب أن يكون رقم الهاتف حقيقياً وفعالاً.</p>
+      <h3 style="color:var(--navy);margin:1rem 0 0.5rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem">3. حقوق الإدارة</h3>
+      <p>تحتفظ إدارة Relax بحق حذف أي إعلان يخالف الشروط دون إشعار مسبق، وحظر المستخدمين المخالفين، وتعديل هذه الشروط في أي وقت.</p>
+      <h3 style="color:var(--navy);margin:1rem 0 0.5rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem">4. اشتراك PRO</h3>
+      <p>اشتراك PRO بـ 99 درهم/شهر. لا يوجد استرداد للمبالغ بعد التفعيل. يمكن إلغاء التجديد بالتواصل معنا قبل موعد التجديد بـ 48 ساعة.</p>
+      <h3 style="color:var(--navy);margin:1rem 0 0.5rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem">5. إخلاء المسؤولية</h3>
+      <p>Relax منصة وسيطة فقط. لسنا مسؤولين عن صحة المعلومات المنشورة أو جودة الخدمات المعروضة. التعاملات بين المستخدمين تمت على مسؤوليتهم الكاملة.</p>
+      <h3 style="color:var(--navy);margin:1rem 0 0.5rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem">6. التواصل</h3>
+      <p>لأي شكوى أو استفسار: <strong>amarir2019buz@gmail.com</strong> أو WhatsApp: <strong>+212 777 318 753</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT US MODAL -->
+<div class="modal-overlay" id="aboutModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal" style="max-width:520px">
+    <div class="modal-header"><h2>🌿 من نحن</h2><button class="modal-close" onclick="document.getElementById('aboutModal').classList.remove('open')">✕</button></div>
+    <div class="modal-body" style="text-align:center">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--gold);font-style:italic;letter-spacing:4px;margin-bottom:0.3rem">Relax</div>
+      <div style="font-size:0.82rem;color:var(--warm);margin-bottom:1.5rem;letter-spacing:1px">منصة إعلانات التدليك والاسترخاء</div>
+      <p style="font-size:0.9rem;color:var(--blue);line-height:1.8;margin-bottom:1rem">
+        Relax هي أول منصة عربية متخصصة في إعلانات خدمات التدليك والاسترخاء. نربط بين محترفي التدليك والعملاء الباحثين عن أفضل الخدمات.
+      </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.8rem;margin:1.2rem 0">
+        <div style="background:var(--cream);border-radius:14px;padding:0.8rem;border:1px solid rgba(232,223,208,0.6)">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold)">🌍</div>
+          <div style="font-size:0.72rem;color:var(--blue);margin-top:4px">متعدد اللغات</div>
+        </div>
+        <div style="background:var(--cream);border-radius:14px;padding:0.8rem;border:1px solid rgba(232,223,208,0.6)">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold)">🔒</div>
+          <div style="font-size:0.72rem;color:var(--blue);margin-top:4px">آمن ومشفر</div>
+        </div>
+        <div style="background:var(--cream);border-radius:14px;padding:0.8rem;border:1px solid rgba(232,223,208,0.6)">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold)">⭐</div>
+          <div style="font-size:0.72rem;color:var(--blue);margin-top:4px">إعلانات موثوقة</div>
+        </div>
+      </div>
+      <p style="font-size:0.85rem;color:var(--blue);line-height:1.7">
+        نشر الإعلانات <strong style="color:var(--green)">مجاني تماماً</strong>. اشتراك PRO يمنحك ظهوراً مميزاً وإحصائيات تفصيلية.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="modal-overlay" id="contactModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal" style="max-width:460px">
+    <div class="modal-header"><h2>📞 اتصل بنا</h2><button class="modal-close" onclick="document.getElementById('contactModal').classList.remove('open')">✕</button></div>
+    <div class="modal-body">
+      <div style="display:flex;flex-direction:column;gap:0.8rem">
+        <a href="https://wa.me/212777318753" target="_blank" style="display:flex;align-items:center;gap:1rem;background:#f0fdf4;border:1.5px solid rgba(37,211,102,0.25);border-radius:14px;padding:1rem;text-decoration:none;transition:all 0.2s" onmouseover="this.style.background='#dcfce7'" onmouseout="this.style.background='#f0fdf4'">
+          <span style="font-size:1.8rem">💬</span>
+          <div>
+            <div style="font-weight:700;color:#166534;font-size:0.95rem">WhatsApp</div>
+            <div style="font-size:0.82rem;color:#4ade80">+212 777 318 753</div>
+            <div style="font-size:0.75rem;color:#86efac;margin-top:2px">الرد خلال دقائق</div>
+          </div>
+        </a>
+        <a href="mailto:amarir2019buz@gmail.com" style="display:flex;align-items:center;gap:1rem;background:var(--cream);border:1.5px solid rgba(232,223,208,0.6);border-radius:14px;padding:1rem;text-decoration:none;transition:all 0.2s" onmouseover="this.style.background='#ede5d8'" onmouseout="this.style.background='var(--cream)'">
+          <span style="font-size:1.8rem">📧</span>
+          <div>
+            <div style="font-weight:700;color:var(--navy);font-size:0.95rem">البريد الإلكتروني</div>
+            <div style="font-size:0.82rem;color:var(--blue)">amarir2019buz@gmail.com</div>
+            <div style="font-size:0.75rem;color:var(--warm);margin-top:2px">الرد خلال 24 ساعة</div>
+          </div>
+        </a>
+        <div style="background:var(--cream);border:1.5px solid rgba(232,223,208,0.6);border-radius:14px;padding:1rem">
+          <div style="font-weight:700;color:var(--navy);font-size:0.9rem;margin-bottom:0.3rem">⏰ أوقات العمل</div>
+          <div style="font-size:0.82rem;color:var(--blue);line-height:1.7">
+            الإثنين - السبت: 9:00 - 22:00<br>
+            الأحد: 10:00 - 20:00
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,rgba(123,158,122,0.1),rgba(200,152,106,0.1));border:1.5px solid rgba(200,152,106,0.2);border-radius:14px;padding:1rem;text-align:center">
+          <div style="font-size:0.85rem;color:var(--navy);font-weight:700;margin-bottom:0.3rem">للإبلاغ عن مشكلة تقنية</div>
+          <div style="font-size:0.8rem;color:var(--blue)">راسلنا عبر WhatsApp مع وصف المشكلة وسنحلها في أقرب وقت</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COOKIE CONSENT BANNER -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:500;background:linear-gradient(135deg,#2C2219,#3D3529);padding:0.9rem 1.2rem;border-top:1px solid rgba(200,152,106,0.2);box-shadow:0 -4px 20px rgba(0,0,0,0.3)">
+  <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+    <div style="flex:1;min-width:200px">
+      <div style="color:var(--gold-light);font-size:0.88rem;font-weight:700;margin-bottom:2px">🍪 نستخدم Cookies</div>
+      <div style="color:rgba(232,196,154,0.6);font-size:0.78rem">لتحسين تجربتك وتحليل الزيارات. <button onclick="document.getElementById('privacyModal').classList.add('open')" style="background:none;border:none;color:rgba(200,152,106,0.8);cursor:pointer;font-family:Tajawal;font-size:0.78rem;text-decoration:underline">اقرأ المزيد</button></div>
+    </div>
+    <div style="display:flex;gap:0.5rem">
+      <button onclick="acceptCookies()" style="background:linear-gradient(135deg,#7B9E7A,#5A8A56);color:white;border:none;border-radius:9px;padding:0.5rem 1.1rem;font-family:Tajawal;font-weight:700;font-size:0.85rem;cursor:pointer">قبول ✓</button>
+      <button onclick="declineCookies()" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.15);border-radius:9px;padding:0.5rem 0.9rem;font-family:Tajawal;font-size:0.85rem;cursor:pointer">رفض</button>
     </div>
   </div>
 </div>
 
 <footer>
   <div class="logo-footer">Relax</div>
-  <p id="footerText">منصة إعلانات التدليك والاسترخاء © 2024</p>
-  <p style="font-size:0.78rem;margin-top:0.5rem;opacity:0.6">
-    <a href="#" onclick="document.getElementById('termsModal').classList.add('open')" style="color:rgba(255,255,255,0.7);text-decoration:none">الشروط والخصوصية</a>
-  </p>
+  <p id="footerText">منصة إعلانات التدليك والاسترخاء © 2025</p>
+  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:0.8rem">
+    <button onclick="document.getElementById('aboutModal').classList.add('open')" style="background:none;border:none;color:rgba(232,196,154,0.6);cursor:pointer;font-family:Tajawal;font-size:0.8rem;transition:color 0.2s" onmouseover="this.style.color='rgba(232,196,154,0.9)'" onmouseout="this.style.color='rgba(232,196,154,0.6)'">من نحن</button>
+    <span style="color:rgba(232,196,154,0.2)">|</span>
+    <button onclick="document.getElementById('contactModal').classList.add('open')" style="background:none;border:none;color:rgba(232,196,154,0.6);cursor:pointer;font-family:Tajawal;font-size:0.8rem;transition:color 0.2s" onmouseover="this.style.color='rgba(232,196,154,0.9)'" onmouseout="this.style.color='rgba(232,196,154,0.6)'">اتصل بنا</button>
+    <span style="color:rgba(232,196,154,0.2)">|</span>
+    <button onclick="document.getElementById('privacyModal').classList.add('open')" style="background:none;border:none;color:rgba(232,196,154,0.6);cursor:pointer;font-family:Tajawal;font-size:0.8rem;transition:color 0.2s" onmouseover="this.style.color='rgba(232,196,154,0.9)'" onmouseout="this.style.color='rgba(232,196,154,0.6)'">سياسة الخصوصية</button>
+    <span style="color:rgba(232,196,154,0.2)">|</span>
+    <button onclick="document.getElementById('termsModal').classList.add('open')" style="background:none;border:none;color:rgba(232,196,154,0.6);cursor:pointer;font-family:Tajawal;font-size:0.8rem;transition:color 0.2s" onmouseover="this.style.color='rgba(232,196,154,0.9)'" onmouseout="this.style.color='rgba(232,196,154,0.6)'">شروط الاستخدام</button>
+  </div>
+  <div style="margin-top:0.8rem;font-size:0.72rem;opacity:0.4">
+    Made with 🌿 for the Arab world
+  </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ===================== TRANSLATIONS =====================
 const T = {
   ar:{dir:'rtl',flag:'🇲🇦',name:'العربية',
@@ -2618,12 +2899,19 @@ function renderListings() {
     return;
   }
   let sorted = _origSort(filtered);
-  // PRO always first (stable sort preserves price/rating order within)
   sorted.sort((a,b) => (b.isPro?1:0)-(a.isPro?1:0));
   const page = sorted.slice(0, visibleCount);
   const loadMoreBtn = document.getElementById('loadMoreBtn');
   loadMoreBtn.style.display = sorted.length > visibleCount ? 'block' : 'none';
-  grid.innerHTML=page.map((l,i)=>{
+
+  // AdSense slot HTML (يظهر بعد كل 6 إعلانات)
+  const adSlot = `<div style="grid-column:1/-1;background:var(--cream);border-radius:16px;padding:1rem;text-align:center;border:1px dashed rgba(61,53,41,0.15);min-height:90px;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:0.8rem;opacity:0.6">
+    <!-- Google AdSense - سيظهر هنا بعد تفعيل AdSense -->
+    📢 إعلان
+  </div>`;
+
+  let html = '';
+  page.forEach((l,i) => {
     const img=l.imgUrl?`<img class="card-img" src="${l.imgUrl}" alt="${l.title}" loading="lazy">`:getDefaultImg(l.type,l.title);
     const proTop=l.isPro?`<div class="card-pro-top">${t.featuredTag}</div>`:'';
     const proClass=l.isPro?'card-pro-border':'';
@@ -2637,13 +2925,15 @@ function renderListings() {
       starsHTML += `<span class="rating-count">(${ratingCount})</span>`;
     }
     const couponBadge = l.coupon ? `<div class="coupon-badge">🎟️ ${l.coupon}${l.couponDiscount?` -${l.couponDiscount}%`:''}</div>` : '';
-    return `<div class="card ${proClass}" onclick="openDetail('${l.id}')" style="position:relative">
+    const verifiedBadge = l.isVerified ? `<span style="position:absolute;bottom:10px;left:10px;background:rgba(16,185,129,0.9);color:white;font-size:0.65rem;font-weight:700;padding:3px 8px;border-radius:10px;z-index:3;backdrop-filter:blur(4px)">✓ موثق</span>` : '';
+
+    html += `<div class="card ${proClass}" onclick="openDetail('${l.id}')" style="position:relative">
       ${proTop}${img}
       <button class="fav-btn ${isFav?'active':''}" onclick="toggleFav(event,'${l.id}')">${isFav?'❤️':'🤍'}</button>
       <div class="card-badge">${l.type}</div>
-      ${couponBadge}
+      ${couponBadge}${verifiedBadge}
       <div class="card-body">
-        <div class="card-type">${l.isPro?'<span class="pro-badge">PRO</span>':''}${l.isVerified?'<span style="color:#10b981;font-size:0.7rem;font-weight:700">✓ موثق</span> ':''}✦ ${l.type}</div>
+        <div class="card-type">${l.isPro?'<span class="pro-badge">PRO</span>':''}${l.isVerified?'<span style="color:#10b981;font-size:0.7rem;font-weight:700">✓ </span>':''}✦ ${l.type}</div>
         <div class="card-title">${l.title}</div>
         ${starsHTML?`<div class="stars-row">${starsHTML}</div>`:''}
         <div class="card-desc">${l.desc}</div>
@@ -2653,7 +2943,12 @@ function renderListings() {
         </div>
       </div>
     </div>`;
-  }).join('');
+
+    // Insert ad after every 6 cards
+    if ((i+1) % 6 === 0 && i < page.length-1) html += adSlot;
+  });
+
+  grid.innerHTML = html;
 }
 
 // Search History
@@ -2915,9 +3210,21 @@ function closePostModal(){document.getElementById('postModal').classList.remove(
 function openProModal(){document.getElementById('proModal').classList.add('open');}
 
 function payWithSkrill(){
-  showToast('🔗 Redirecting to Skrill...');
-  // window.open('https://pay.skrill.com/YOUR_LINK','_blank');
-  setTimeout(()=>showToast('⚠️ Add your Skrill link in the code',true),1500);
+  const email = 'amarir2019buz@gmail.com';
+  const amount = 99;
+  const currency = 'MAD';
+  const note = encodeURIComponent('Relax PRO - اشتراك شهري');
+  const url = `https://www.skrill.com/app/pay.pl?pay_to_email=${email}&amount=${amount}&currency=${currency}&detail1_description=Relax+PRO&detail1_text=${note}&return_url=${encodeURIComponent(window.location.href)}&logo_url=https://amarir2019buz-ctrl.github.io/Relax---Massage/og-image.jpg`;
+  showToast('🔗 جاري التوجيه إلى Skrill...');
+  setTimeout(() => window.open(url, '_blank'), 800);
+}
+
+function payViaWhatsApp(){
+  const user = currentUser?.displayName || 'مستخدم';
+  const uid = currentUser?.uid || '—';
+  const msg = encodeURIComponent(`مرحبا 👋\nأريد الاشتراك في *Relax PRO* 🌿\n\n👤 الاسم: ${user}\n🆔 ID: ${uid}\n💰 المبلغ: 99 MAD / شهر\n\nأرجو تفعيل الإعلان PRO، شكراً!`);
+  window.open(`https://wa.me/212777318753?text=${msg}`, '_blank');
+  showToast('📱 جاري فتح WhatsApp...');
 }
 
 async function submitAd() {
@@ -3145,6 +3452,8 @@ window.onUserChanged = function(user) {
     checkAdmin(user);
     setTimeout(checkUnreadMessages, 2000);
     setInterval(checkUnreadMessages, 60000);
+    showWelcomeNotif(user);
+    setTimeout(checkProExpiry, 4000);
     if (localStorage.getItem('relax_notif') !== '1') {
       setTimeout(requestNotifPermission, 3000);
     }
@@ -3504,12 +3813,26 @@ async function sendMsg() {
 // ===================== SHARE =====================
 function shareAd(id, title) {
   const url = window.location.href.split('?')[0] + '?ad=' + id;
-  if (navigator.share) {
-    navigator.share({ title: title, text: title + ' - Relax', url: url });
-  } else {
-    navigator.clipboard.writeText(url).then(() => showToast('🔗 تم نسخ الرابط!'));
-  }
+  const text = `${title} - Relax 🌿`;
+
+  // Show share options modal
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px)';
+  overlay.innerHTML = `
+    <div style="background:var(--white);border-radius:22px 22px 0 0;padding:1.5rem;width:100%;max-width:500px;animation:slideUp 0.3s ease">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;color:var(--navy);margin-bottom:1.2rem;text-align:center">📤 مشاركة الإعلان</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.8rem;margin-bottom:1rem">
+        <button onclick="window.open('https://wa.me/?text=${encodeURIComponent(text+' '+url)}','_blank')" style="background:#25D366;color:white;border:none;border-radius:14px;padding:0.9rem 0.5rem;cursor:pointer;font-size:0.78rem;font-family:Tajawal;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:0.3rem"><span style="font-size:1.5rem">💬</span>WhatsApp</button>
+        <button onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}','_blank')" style="background:#1877F2;color:white;border:none;border-radius:14px;padding:0.9rem 0.5rem;cursor:pointer;font-size:0.78rem;font-family:Tajawal;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:0.3rem"><span style="font-size:1.5rem">📘</span>Facebook</button>
+        <button onclick="window.open('https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}','_blank')" style="background:#229ED9;color:white;border:none;border-radius:14px;padding:0.9rem 0.5rem;cursor:pointer;font-size:0.78rem;font-family:Tajawal;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:0.3rem"><span style="font-size:1.5rem">✈️</span>Telegram</button>
+        <button onclick="navigator.clipboard.writeText('${url}').then(()=>{showToast('🔗 تم نسخ الرابط!')})" style="background:var(--navy);color:var(--gold-light);border:none;border-radius:14px;padding:0.9rem 0.5rem;cursor:pointer;font-size:0.78rem;font-family:Tajawal;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:0.3rem"><span style="font-size:1.5rem">🔗</span>نسخ</button>
+      </div>
+      <button onclick="this.closest('div[style]').remove()" style="width:100%;background:var(--cream);border:1px solid var(--beige);border-radius:12px;padding:0.75rem;font-family:Tajawal;font-size:0.9rem;cursor:pointer;color:var(--navy);font-weight:700">إلغاء</button>
+    </div>`;
+  overlay.addEventListener('click', e => { if(e.target===overlay) overlay.remove(); });
+  document.body.appendChild(overlay);
 }
+
 
 // Load shared ad on page load
 function checkSharedAd() {
@@ -4310,8 +4633,334 @@ async function openProfile(userId) {
   } catch(e) { console.error(e); document.getElementById('profileName').textContent = 'خطأ'; }
 }
 
+// ===================== MY PROFILE =====================
+async function openMyProfile() {
+  if (!currentUser) { openAuthModal(); return; }
+  document.getElementById('myProfileModal').classList.add('open');
+
+  // Populate header
+  const name = currentUser.displayName || 'مستخدم';
+  const email = currentUser.email || '';
+  const photo = currentUser.photoURL || '';
+  document.getElementById('myProfileName').textContent = name;
+  document.getElementById('myProfileEmail').textContent = email;
+  document.getElementById('myProfileAvatarWrap').innerHTML = photo
+    ? `<img class="profile-avatar" src="${photo}">`
+    : `<div class="profile-avatar-placeholder">👤</div>`;
+
+  // Load ads
+  const listEl = document.getElementById('myProfileAdsList');
+  listEl.innerHTML = '<div style="text-align:center;padding:2rem;color:#aaa;font-style:italic">⏳ جاري التحميل...</div>';
+
+  try {
+    const {collection, getDocs, query, where, orderBy} = window._fbModules;
+    const q = query(collection(window._db,'listings'), where('userId','==',currentUser.uid), orderBy('createdAt','desc'));
+    const snap = await getDocs(q);
+    const myAds = snap.docs.map(d => ({id:d.id,...d.data()}));
+
+    // Stats
+    const totalViews = myAds.reduce((s,a)=>s+(a.views||0),0);
+    const rated = myAds.filter(a=>a.avgRating);
+    const avgR = rated.length ? (rated.reduce((s,a)=>s+a.avgRating,0)/rated.length).toFixed(1) : '—';
+    document.getElementById('myProfileAdCount').textContent = myAds.length;
+    document.getElementById('myProfileViews').textContent = totalViews;
+    document.getElementById('myProfileRating').textContent = avgR !== '—' ? avgR+'⭐' : '—';
+
+    if (!myAds.length) {
+      listEl.innerHTML = `<div style="text-align:center;padding:2rem;color:#aaa;font-style:italic">
+        <div style="font-size:2.5rem;margin-bottom:0.5rem">📭</div>
+        لا توجد إعلانات بعد<br>
+        <button onclick="openPostModal();document.getElementById('myProfileModal').classList.remove('open')" style="margin-top:0.8rem;background:var(--sky);color:white;border:none;border-radius:8px;padding:0.5rem 1.2rem;font-family:Tajawal;cursor:pointer;font-weight:700">+ نشر أول إعلان</button>
+      </div>`;
+      return;
+    }
+
+    listEl.innerHTML = myAds.map(a => {
+      const imgEl = a.imgUrl
+        ? `<img class="my-ad-img" src="${a.imgUrl}" alt="${a.title}">`
+        : `<div class="my-ad-img-placeholder" style="background:${(typeImages[a.type]||{bg:'linear-gradient(135deg,#E8DFD0,#D4C9B6)'}).bg}">${(typeImages[a.type]||{emoji:'💆'}).emoji}</div>`;
+      return `<div class="my-ad-card" id="myadcard_${a.id}">
+        ${imgEl}
+        <div class="my-ad-body">
+          <div class="my-ad-title">${a.isPro?'<span class="pro-badge">PRO</span>':''}${a.title}</div>
+          <div class="my-ad-meta">📍 ${a.city} · 💰 ${a.price} DH · 👁️ ${a.views||0} · ⭐ ${a.avgRating?a.avgRating.toFixed(1):'—'}</div>
+          <!-- Stats bar -->
+          <div style="display:flex;gap:0.5rem;margin:0.4rem 0;flex-wrap:wrap">
+            <span style="background:rgba(123,158,122,0.12);color:var(--green);border-radius:8px;padding:2px 8px;font-size:0.72rem;font-weight:700">👁️ ${a.views||0} مشاهدة</span>
+            <span style="background:rgba(200,152,106,0.12);color:var(--gold);border-radius:8px;padding:2px 8px;font-size:0.72rem;font-weight:700">⭐ ${a.avgRating?a.avgRating.toFixed(1)+' ('+( a.ratingCount||0)+')':'بدون تقييم'}</span>
+            <span style="background:rgba(61,53,41,0.07);color:var(--blue);border-radius:8px;padding:2px 8px;font-size:0.72rem;font-weight:700">📅 ${a.createdAt?.toDate?new Date(a.createdAt.toDate()).toLocaleDateString('ar-MA'):'—'}</span>
+            ${a.isPro?'<span style="background:linear-gradient(135deg,#C8986A,#A07550);color:white;border-radius:8px;padding:2px 8px;font-size:0.72rem;font-weight:700">⭐ PRO</span>':''}
+            ${a.isVerified?'<span style="background:linear-gradient(135deg,#10b981,#059669);color:white;border-radius:8px;padding:2px 8px;font-size:0.72rem;font-weight:700">✓ موثق</span>':''}
+          </div>
+          <div class="my-ad-actions">
+            <button class="my-ad-btn my-ad-btn-view" onclick="document.getElementById('myProfileModal').classList.remove('open');openDetail('${a.id}')">👁️ عرض</button>
+            <button class="my-ad-btn my-ad-btn-edit" onclick="toggleInlineEdit('${a.id}')">✏️ تعديل</button>
+            ${!a.isPro?`<button class="my-ad-btn my-ad-btn-pro" onclick="upgradeAd('${a.id}')">⭐ PRO</button>`:''}
+            <button class="my-ad-btn my-ad-btn-del" onclick="deleteMyAd('${a.id}')">🗑️ حذف</button>
+          </div>
+        </div>
+        <!-- Inline edit form -->
+        <div class="inline-edit-form" id="editform_${a.id}">
+          <div style="font-size:0.82rem;font-weight:700;color:var(--navy);margin-bottom:0.2rem">✏️ تعديل الإعلان</div>
+          <input type="text" id="ef_title_${a.id}" value="${(a.title||'').replace(/"/g,'&quot;')}" placeholder="العنوان *">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem">
+            <select id="ef_city_${a.id}">
+              ${['الدار البيضاء','الرباط','مراكش','فاس','أكادير','طنجة','الجزائر العاصمة','وهران','تونس العاصمة','القاهرة','الإسكندرية','الرياض','جدة','دبي','أبوظبي','باريس','مرسيليا','بروكسل','أمستردام','برلين','مدريد','روما','بانكوك','سيول','براغ'].map(c=>`<option${c===a.city?' selected':''}>${c}</option>`).join('')}
+            </select>
+            <input type="number" id="ef_price_${a.id}" value="${a.price||''}" placeholder="السعر (DH)">
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem">
+            <input type="tel" id="ef_phone_${a.id}" value="${a.phone||''}" placeholder="الهاتف">
+            <input type="number" id="ef_age_${a.id}" value="${a.age||''}" placeholder="العمر" min="18" max="70">
+          </div>
+          <textarea id="ef_desc_${a.id}" placeholder="الوصف">${a.desc||''}</textarea>
+          <!-- Image upload in edit -->
+          <div style="display:flex;gap:0.5rem;align-items:center">
+            <label style="flex:1;background:var(--cream);border:1.5px dashed rgba(61,53,41,0.2);border-radius:9px;padding:0.5rem;text-align:center;cursor:pointer;font-size:0.8rem;color:var(--blue)">
+              📸 تغيير الصورة
+              <input type="file" accept="image/*" style="display:none" onchange="uploadEditImg(event,'${a.id}')">
+            </label>
+            ${a.imgUrl?`<img src="${a.imgUrl}" style="width:50px;height:50px;object-fit:cover;border-radius:8px;border:1px solid var(--beige)" id="ef_imgpreview_${a.id}">`:`<div id="ef_imgpreview_${a.id}" style="width:50px;height:50px;background:var(--beige);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem">📷</div>`}
+          </div>
+          <div class="inline-edit-actions">
+            <button class="btn-save-edit" onclick="saveInlineEdit('${a.id}')">✅ حفظ التغييرات</button>
+            <button class="btn-cancel-edit" onclick="toggleInlineEdit('${a.id}')">إلغاء</button>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+
+  } catch(e) {
+    listEl.innerHTML = '<div style="text-align:center;padding:2rem;color:#e74c3c">❌ خطأ في التحميل</div>';
+    console.error(e);
+  }
+}
+
+function toggleInlineEdit(adId) {
+  const form = document.getElementById('editform_' + adId);
+  if (!form) return;
+  form.classList.toggle('open');
+  if (form.classList.contains('open')) {
+    form.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+}
+
+// Store pending new image for edit
+const _editImgPending = {};
+
+async function uploadEditImg(event, adId) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const preview = document.getElementById('ef_imgpreview_' + adId);
+  if (preview) preview.src = URL.createObjectURL(file);
+  _editImgPending[adId] = file;
+}
+
+async function saveInlineEdit(adId) {
+  if (!currentUser) return;
+  const title = document.getElementById('ef_title_' + adId)?.value.trim();
+  const city = document.getElementById('ef_city_' + adId)?.value;
+  const price = parseInt(document.getElementById('ef_price_' + adId)?.value) || 0;
+  const phone = document.getElementById('ef_phone_' + adId)?.value.trim();
+  const age = parseInt(document.getElementById('ef_age_' + adId)?.value) || null;
+  const desc = document.getElementById('ef_desc_' + adId)?.value.trim();
+  if (!title || !price || !phone) { showToast('⚠️ أكمل الحقول المطلوبة', true); return; }
+
+  const btn = document.querySelector(`#editform_${adId} .btn-save-edit`);
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ جاري الحفظ...'; }
+
+  try {
+    const {doc, updateDoc} = window._fbModules;
+    let imgUrl = undefined;
+
+    // Upload new image if selected
+    if (_editImgPending[adId]) {
+      showToast('📸 جاري رفع الصورة...');
+      imgUrl = await uploadToCloudinary(_editImgPending[adId]);
+      delete _editImgPending[adId];
+    }
+
+    const updateData = {title, city, price, phone, desc};
+    if (age) updateData.age = age;
+    if (imgUrl) { updateData.imgUrl = imgUrl; updateData.photos = [imgUrl]; }
+
+    await updateDoc(doc(window._db,'listings',adId), updateData);
+
+    // Update local cache
+    const ad = allListings.find(a=>a.id===adId);
+    if (ad) Object.assign(ad, updateData);
+
+    showToast('✅ تم حفظ التعديلات!');
+    toggleInlineEdit(adId);
+
+    // Update card display
+    const card = document.getElementById('myadcard_' + adId);
+    if (card) {
+      const titleEl = card.querySelector('.my-ad-title');
+      if (titleEl) titleEl.innerHTML = `${ad?.isPro?'<span class="pro-badge">PRO</span>':''}${title}`;
+      const metaEl = card.querySelector('.my-ad-meta');
+      if (metaEl) metaEl.textContent = `📍 ${city} · 💰 ${price} DH · 👁️ ${ad?.views||0} · ⭐ ${ad?.avgRating?ad.avgRating.toFixed(1):'—'}`;
+      if (imgUrl) {
+        const imgEl = card.querySelector('.my-ad-img');
+        if (imgEl) imgEl.src = imgUrl;
+      }
+    }
+    renderListings();
+  } catch(e) {
+    showToast('❌ خطأ في الحفظ', true);
+    console.error(e);
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = '✅ حفظ التغييرات'; }
+  }
+}
+
+async function deleteMyAd(adId) {
+  if (!confirm('هل أنت متأكد من حذف هذا الإعلان؟')) return;
+  try {
+    const {doc, deleteDoc} = window._fbModules;
+    await deleteDoc(doc(window._db,'listings',adId));
+    allListings = allListings.filter(l=>l.id!==adId);
+    filtered = filtered.filter(l=>l.id!==adId);
+    const card = document.getElementById('myadcard_' + adId);
+    if (card) { card.style.transition='all 0.3s'; card.style.opacity='0'; card.style.transform='scale(0.9)'; setTimeout(()=>card.remove(),300); }
+    showToast('✅ تم حذف الإعلان');
+    // Update stats
+    const countEl = document.getElementById('myProfileAdCount');
+    if (countEl) countEl.textContent = parseInt(countEl.textContent||0) - 1;
+    renderListings();
+  } catch(e) { showToast('❌ خطأ في الحذف', true); }
+}
+
+// Avatar upload
+function triggerAvatarUpload() {
+  document.getElementById('avatarFileInput').click();
+}
+
+async function uploadAvatar(event) {
+  if (!currentUser) return;
+  const file = event.target.files[0];
+  if (!file) return;
+  showToast('📸 جاري رفع الصورة...');
+  try {
+    const url = await uploadToCloudinary(file);
+    await window._updateUserProfile({ photoURL: url });
+    currentUser.photoURL = url; // Update local reference
+    document.getElementById('myProfileAvatarWrap').innerHTML = `<img class="profile-avatar" src="${url}">`;
+    // Also update header avatar
+    const headerAvatar = document.querySelector('.user-avatar');
+    if (headerAvatar) headerAvatar.src = url;
+    showToast('✅ تم تحديث الصورة الشخصية!');
+  } catch(e) { showToast('❌ خطأ في رفع الصورة', true); console.error(e); }
+}
+
+// ===================== PWA INSTALL (FIXED) =====================
+let _deferredInstallPrompt = null;
+
+// Capture the prompt as early as possible
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  _deferredInstallPrompt = e;
+  // Show banner after 3 seconds if not dismissed
+  if (!localStorage.getItem('relax_pwa_dismissed')) {
+    setTimeout(showPWABanner, 3000);
+  }
+  // Activate header button
+  const btn = document.getElementById('btnInstall');
+  if (btn) btn.style.opacity = '1';
+});
+
+window.addEventListener('appinstalled', () => {
+  _deferredInstallPrompt = null;
+  hidePWABanner();
+  showToast('✅ تم تثبيت التطبيق بنجاح!');
+});
+
+function showPWABanner() {
+  const banner = document.getElementById('pwaInstallBanner');
+  if (banner) banner.classList.add('show');
+}
+
+function hidePWABanner() {
+  const banner = document.getElementById('pwaInstallBanner');
+  if (banner) banner.classList.remove('show');
+}
+
+function dismissPWABanner() {
+  hidePWABanner();
+  localStorage.setItem('relax_pwa_dismissed', '1');
+}
+
+async function doInstallPWA() {
+  if (_deferredInstallPrompt) {
+    _deferredInstallPrompt.prompt();
+    const { outcome } = await _deferredInstallPrompt.userChoice;
+    if (outcome === 'accepted') {
+      showToast('✅ جاري تثبيت التطبيق...');
+      hidePWABanner();
+      _deferredInstallPrompt = null;
+    }
+  } else {
+    // Fallback for iOS or already installed
+    showToast('📲 iOS: اضغط "مشاركة" ثم "إضافة إلى الشاشة الرئيسية"');
+  }
+}
+
+// installPWA = alias for header button
+function installPWA() { doInstallPWA(); }
+
+
+// ===================== COOKIE CONSENT =====================
+function initCookieBanner() {
+  if (!localStorage.getItem('relax_cookies_consent')) {
+    setTimeout(() => {
+      const banner = document.getElementById('cookieBanner');
+      if (banner) banner.style.display = 'block';
+    }, 2500);
+  }
+}
+function acceptCookies() {
+  localStorage.setItem('relax_cookies_consent', 'accepted');
+  document.getElementById('cookieBanner').style.display = 'none';
+  showToast('✅ تم قبول Cookies');
+}
+function declineCookies() {
+  localStorage.setItem('relax_cookies_consent', 'declined');
+  document.getElementById('cookieBanner').style.display = 'none';
+}
+
+// ===================== WELCOME NOTIFICATION =====================
+function showWelcomeNotif(user) {
+  if (!user || localStorage.getItem('relax_welcomed_' + user.uid)) return;
+  localStorage.setItem('relax_welcomed_' + user.uid, '1');
+  setTimeout(() => {
+    const name = user.displayName?.split(' ')[0] || 'بك';
+    showToast(`🌿 مرحباً ${name}! يسعدنا انضمامك لـ Relax`);
+  }, 1500);
+}
+
+// ===================== PRO EXPIRY CHECK =====================
+async function checkProExpiry() {
+  if (!currentUser) return;
+  try {
+    const {doc, getDoc} = window._fbModules;
+    const ref = doc(window._db, 'users', currentUser.uid);
+    const snap = await getDoc(ref);
+    if (!snap.exists()) return;
+    const data = snap.data();
+    if (!data.proExpiry) return;
+    const expiry = data.proExpiry.toDate ? data.proExpiry.toDate() : new Date(data.proExpiry);
+    const daysLeft = Math.ceil((expiry - new Date()) / (1000*60*60*24));
+    if (daysLeft <= 3 && daysLeft > 0) {
+      setTimeout(() => showToast(`⚠️ اشتراك PRO ينتهي خلال ${daysLeft} أيام — جدد الآن!`, true), 3000);
+    } else if (daysLeft <= 0) {
+      setTimeout(() => showToast('❌ انتهى اشتراك PRO ديالك — جدد للاستمرار', true), 3000);
+    }
+  } catch(e) { console.warn('PRO expiry check:', e); }
+}
+
+window.addEventListener('load', () => { initCookieBanner(); });
+
 // ===================== SIMILAR ADS =====================
-function loadSimilarAds(adId) {
   const ad = allListings.find(a => a.id === adId);
   if (!ad) return;
   const similar = allListings.filter(a => a.id !== adId && (a.type === ad.type || a.city === ad.city)).slice(0,4);
@@ -4610,8 +5259,4 @@ updateLabels();
 document.getElementById('langBtn').innerHTML = '🌐 ▾';
 setTimeout(()=>{
   if(!window._firebaseReady)
-    document.getElementById('listingsGrid').innerHTML='<div class="empty-state" style="grid-column:1/-1"><p style="font-size:2rem">🔥</p><p style="margin-top:1rem">Firebase not connected</p></div>';
-},5000);
-</script>
-</body>
-</html>
+ 
