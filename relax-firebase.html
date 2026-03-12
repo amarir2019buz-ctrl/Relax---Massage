@@ -2045,7 +2045,7 @@ if ('serviceWorker' in navigator) {
       </div>
     </div>
     <div class="dash-ads-list">
-      <div style="font-weight:700;font-size:0.95rem;margin-bottom:0.8rem;color:var(--navy)" id="myAdsTitle">إعلاناتي</div>
+      <div style="font-weight:700;font-size:0.95rem;margin-bottom:0.8rem;color:var(--navy)" id="myAdsTitleStatic">إعلاناتي</div>
       <div id="dashAdsList">
         <div class="dash-empty">جاري التحميل...</div>
       </div>
@@ -2133,12 +2133,6 @@ service cloud.firestore {
 </div>
 
 <div class="toast" id="toast"></div>
-
-<!-- COOKIE BANNER -->
-<div class="cookie-banner" id="cookieBanner">
-  <span>🍪 نستخدم cookies لتحسين تجربتك. <a href="#" style="color:var(--sky)">سياسة الخصوصية</a></span>
-  <button class="cookie-accept" onclick="acceptCookies()">موافق ✓</button>
-</div>
 
 <!-- PWA INSTALL BANNER REMOVED -->
 
@@ -2421,7 +2415,7 @@ const T = {
     callNow:'📞 اتصل الآن',whatsapp:'💬 واتساب',featuredTag:'⭐ إعلان مميز PRO',rateLabel:'قيّم الخدمة',sendMsg:'راسل المعلن',msgEmpty:'لا توجد رسائل بعد',msgPH:'اكتب رسالة...',mapTitle:'خريطة الإعلانات',favAll:'كل الإعلانات',favFav:'المفضلة',
     proSub:'الاشتراك الشهري',proPrice:'99 <span>درهم / شهر</span>',
     proF:['⭐ إعلانك يظهر في أول النتائج دائماً','🔝 شارة PRO مميزة','📊 إحصائيات المشاهدات','🔄 تجديد تلقائي كل أسبوع','📞 رقم هاتف بارز','💬 دعم أولوي 24/7'],
-    payMethod:'اختر طريقة الدفع:',secure:'الدفع آمن ومشفر 100% 🔒',footer:'منصة إعلانات التدليك والاسترخاء © 2024',loginLabel:'دخول',tabLogin:'تسجيل الدخول',tabRegister:'إنشاء حساب',googleBtn:'الدخول بـ Google',or:'أو',loginSubmit:'تسجيل الدخول',nearMe:'📍 قريب مني',favAll:'كل الإعلانات',favFav:'المفضلة',lbImg:'صورة الإعلان (اختياري)',uploadHint:'اضغط لإضافة صورة'},
+    payMethod:'اختر طريقة الدفع:',secure:'الدفع آمن ومشفر 100% 🔒',footer:'منصة إعلانات التدليك والاسترخاء © 2025',loginLabel:'دخول',tabLogin:'تسجيل الدخول',tabRegister:'إنشاء حساب',googleBtn:'الدخول بـ Google',or:'أو',loginSubmit:'تسجيل الدخول',nearMe:'📍 قريب مني',favAll:'كل الإعلانات',favFav:'المفضلة',lbImg:'صورة الإعلان (اختياري)',uploadHint:'اضغط لإضافة صورة'},
 
   fr:{dir:'ltr',flag:'🇫🇷',name:'Français',
     logoSub:'Annonces massage',
@@ -2439,7 +2433,7 @@ const T = {
     callNow:'📞 Appeler',whatsapp:'💬 WhatsApp',featuredTag:'⭐ Annonce PRO',rateLabel:'Évaluer',sendMsg:'Envoyer un message',msgEmpty:'Aucun message',msgPH:'Écrire un message...',mapTitle:'Carte des annonces',favAll:'Toutes',favFav:'Favoris',
     proSub:'Abonnement mensuel',proPrice:'99 <span>DH / mois</span>',
     proF:['⭐ Annonce en tête de liste','🔝 Badge PRO','📊 Statistiques','🔄 Renouvellement auto','📞 Numéro mis en avant','💬 Support prioritaire 24/7'],
-    payMethod:'Choisir le paiement:',secure:'Paiement sécurisé 100% 🔒',footer:'Plateforme annonces massage © 2024',loginLabel:'Connexion',tabLogin:'Se connecter',tabRegister:"S'inscrire",googleBtn:'Connexion avec Google',or:'ou',loginSubmit:'Se connecter',nearMe:'📍 Près de moi',favAll:'Toutes',favFav:'Favoris',lbImg:'Photo (optionnel)',uploadHint:'Cliquez pour ajouter','loginLabel':'Connexion','tabLogin':'Se connecter','tabRegister':'Créer un compte','googleBtn':'Connexion avec Google','or':'ou','loginSubmit':'Se connecter','nearMe':'📍 Près de moi','lbImg':'Photo (optionnel)','uploadHint':'Appuyer pour ajouter','favAll':'Toutes','favFav':'Favoris','rateLabel':'Évaluer','sendMsg':'Contacter','msgEmpty':'Pas de messages','msgPH':'Écrire...'},
+    payMethod:'Choisir le paiement:',secure:'Paiement sécurisé 100% 🔒',footer:'Plateforme annonces massage © 2025',loginLabel:'Connexion',tabLogin:'Se connecter',tabRegister:"S'inscrire",googleBtn:'Connexion avec Google',or:'ou',loginSubmit:'Se connecter',nearMe:'📍 Près de moi',favAll:'Toutes',favFav:'Favoris',lbImg:'Photo (optionnel)',uploadHint:'Cliquez pour ajouter','loginLabel':'Connexion','tabLogin':'Se connecter','tabRegister':'Créer un compte','googleBtn':'Connexion avec Google','or':'ou','loginSubmit':'Se connecter','nearMe':'📍 Près de moi','lbImg':'Photo (optionnel)','uploadHint':'Appuyer pour ajouter','favAll':'Toutes','favFav':'Favoris','rateLabel':'Évaluer','sendMsg':'Contacter','msgEmpty':'Pas de messages','msgPH':'Écrire...'},
 
   en:{dir:'ltr',flag:'🇬🇧',name:'English',
     logoSub:'Massage listings',
@@ -2457,7 +2451,7 @@ const T = {
     callNow:'📞 Call Now',whatsapp:'💬 WhatsApp',featuredTag:'⭐ PRO Listing',rateLabel:'Rate',sendMsg:'Message seller',msgEmpty:'No messages yet',msgPH:'Type a message...',mapTitle:'Listings map',favAll:'All listings',favFav:'Favorites',
     proSub:'Monthly subscription',proPrice:'99 <span>DH / month</span>',
     proF:['⭐ Your ad appears first','🔝 PRO badge','📊 View statistics','🔄 Auto renewal weekly','📞 Featured phone number','💬 Priority support 24/7'],
-    payMethod:'Choose payment:',secure:'100% secure payment 🔒',footer:'Massage listings platform © 2024','loginLabel':'Login','tabLogin':'Login','tabRegister':'Register','googleBtn':'Login with Google','or':'or','loginSubmit':'Login','nearMe':'📍 Near Me','lbImg':'Photo (optional)','uploadHint':'Tap to add photo','favAll':'All','favFav':'Favorites','rateLabel':'Rate','sendMsg':'Message','msgEmpty':'No messages','msgPH':'Type...'},
+    payMethod:'Choose payment:',secure:'100% secure payment 🔒',footer:'Massage listings platform © 2025','loginLabel':'Login','tabLogin':'Login','tabRegister':'Register','googleBtn':'Login with Google','or':'or','loginSubmit':'Login','nearMe':'📍 Near Me','lbImg':'Photo (optional)','uploadHint':'Tap to add photo','favAll':'All','favFav':'Favorites','rateLabel':'Rate','sendMsg':'Message','msgEmpty':'No messages','msgPH':'Type...'},
 
   nl:{dir:'ltr',flag:'🇳🇱',name:'Nederlands',
     logoSub:'Massage advertenties',
@@ -2475,7 +2469,7 @@ const T = {
     callNow:'📞 Bellen',whatsapp:'💬 WhatsApp',featuredTag:'⭐ PRO Advertentie',rateLabel:'Beoordelen',sendMsg:'Stuur bericht',msgEmpty:'Geen berichten',msgPH:'Typ een bericht...',mapTitle:'Kaart advertenties',favAll:'Alle',favFav:'Favorieten',
     proSub:'Maandabonnement',proPrice:'99 <span>DH / maand</span>',
     proF:['⭐ Advertentie bovenaan','🔝 PRO badge','📊 Statistieken','🔄 Automatisch vernieuwen','📞 Uitgelicht nummer','💬 Prioriteitsondersteuning 24/7'],
-    payMethod:'Betaalmethode:',secure:'100% veilige betaling 🔒',footer:'Massage advertentieplatform © 2024','loginLabel':'Inloggen','tabLogin':'Inloggen','tabRegister':'Registreren','googleBtn':'Inloggen met Google','or':'of','loginSubmit':'Inloggen','nearMe':'📍 In de buurt','lbImg':'Foto (optioneel)','uploadHint':'Tik om foto toe te voegen','favAll':'Alles','favFav':'Favorieten','rateLabel':'Beoordelen','sendMsg':'Bericht','msgEmpty':'Geen berichten','msgPH':'Typ...'},
+    payMethod:'Betaalmethode:',secure:'100% veilige betaling 🔒',footer:'Massage advertentieplatform © 2025','loginLabel':'Inloggen','tabLogin':'Inloggen','tabRegister':'Registreren','googleBtn':'Inloggen met Google','or':'of','loginSubmit':'Inloggen','nearMe':'📍 In de buurt','lbImg':'Foto (optioneel)','uploadHint':'Tik om foto toe te voegen','favAll':'Alles','favFav':'Favorieten','rateLabel':'Beoordelen','sendMsg':'Bericht','msgEmpty':'Geen berichten','msgPH':'Typ...'},
 
   de:{dir:'ltr',flag:'🇩🇪',name:'Deutsch',
     logoSub:'Massage Anzeigen',
@@ -2493,7 +2487,7 @@ const T = {
     callNow:'📞 Anrufen',whatsapp:'💬 WhatsApp',featuredTag:'⭐ PRO Anzeige',rateLabel:'Bewerten',sendMsg:'Nachricht senden',msgEmpty:'Keine Nachrichten',msgPH:'Nachricht schreiben...',mapTitle:'Anzeigenkarte',favAll:'Alle',favFav:'Favoriten',
     proSub:'Monatsabonnement',proPrice:'99 <span>DH / Monat</span>',
     proF:['⭐ Anzeige ganz oben','🔝 PRO-Abzeichen','📊 Statistiken','🔄 Automatische Erneuerung','📞 Hervorgehobene Nummer','💬 Prioritätssupport 24/7'],
-    payMethod:'Zahlungsmethode:',secure:'100% sichere Zahlung 🔒',footer:'Massage-Anzeigenplattform © 2024','loginLabel':'Anmelden','tabLogin':'Anmelden','tabRegister':'Registrieren','googleBtn':'Mit Google anmelden','or':'oder','loginSubmit':'Anmelden','nearMe':'📍 In meiner Nähe','lbImg':'Foto (optional)','uploadHint':'Tippen um Foto hinzuzufügen','favAll':'Alle','favFav':'Favoriten','rateLabel':'Bewerten','sendMsg':'Nachricht','msgEmpty':'Keine Nachrichten','msgPH':'Schreiben...'},
+    payMethod:'Zahlungsmethode:',secure:'100% sichere Zahlung 🔒',footer:'Massage-Anzeigenplattform © 2025','loginLabel':'Anmelden','tabLogin':'Anmelden','tabRegister':'Registrieren','googleBtn':'Mit Google anmelden','or':'oder','loginSubmit':'Anmelden','nearMe':'📍 In meiner Nähe','lbImg':'Foto (optional)','uploadHint':'Tippen um Foto hinzuzufügen','favAll':'Alle','favFav':'Favoriten','rateLabel':'Bewerten','sendMsg':'Nachricht','msgEmpty':'Keine Nachrichten','msgPH':'Schreiben...'},
 
   es:{dir:'ltr',flag:'🇪🇸',name:'Español',
     logoSub:'Anuncios de masaje',
@@ -2511,7 +2505,7 @@ const T = {
     callNow:'📞 Llamar',whatsapp:'💬 WhatsApp',featuredTag:'⭐ Anuncio PRO',rateLabel:'Valorar',sendMsg:'Enviar mensaje',msgEmpty:'Sin mensajes',msgPH:'Escribe un mensaje...',mapTitle:'Mapa de anuncios',favAll:'Todos',favFav:'Favoritos',
     proSub:'Suscripción mensual',proPrice:'99 <span>DH / mes</span>',
     proF:['⭐ Anuncio al principio','🔝 Insignia PRO','📊 Estadísticas','🔄 Renovación automática','📞 Número destacado','💬 Soporte prioritario 24/7'],
-    payMethod:'Método de pago:',secure:'Pago 100% seguro 🔒',footer:'Plataforma de anuncios de masaje © 2024','loginLabel':'Entrar','tabLogin':'Entrar','tabRegister':'Registrarse','googleBtn':'Entrar con Google','or':'o','loginSubmit':'Entrar','nearMe':'📍 Cerca de mí','lbImg':'Foto (opcional)','uploadHint':'Tocar para añadir foto','favAll':'Todos','favFav':'Favoritos','rateLabel':'Valorar','sendMsg':'Mensaje','msgEmpty':'Sin mensajes','msgPH':'Escribir...'},
+    payMethod:'Método de pago:',secure:'Pago 100% seguro 🔒',footer:'Plataforma de anuncios de masaje © 2025','loginLabel':'Entrar','tabLogin':'Entrar','tabRegister':'Registrarse','googleBtn':'Entrar con Google','or':'o','loginSubmit':'Entrar','nearMe':'📍 Cerca de mí','lbImg':'Foto (opcional)','uploadHint':'Tocar para añadir foto','favAll':'Todos','favFav':'Favoritos','rateLabel':'Valorar','sendMsg':'Mensaje','msgEmpty':'Sin mensajes','msgPH':'Escribir...'},
 
   it:{dir:'ltr',flag:'🇮🇹',name:'Italiano',
     logoSub:'Annunci massaggio',
@@ -2529,7 +2523,7 @@ const T = {
     callNow:'📞 Chiama',whatsapp:'💬 WhatsApp',featuredTag:'⭐ Annuncio PRO',rateLabel:'Valuta',sendMsg:'Invia messaggio',msgEmpty:'Nessun messaggio',msgPH:'Scrivi un messaggio...',mapTitle:'Mappa annunci',favAll:'Tutti',favFav:'Preferiti',
     proSub:'Abbonamento mensile',proPrice:'99 <span>DH / mese</span>',
     proF:['⭐ Annuncio in cima','🔝 Badge PRO','📊 Statistiche','🔄 Rinnovo automatico','📞 Numero in evidenza','💬 Supporto prioritario 24/7'],
-    payMethod:'Metodo di pagamento:',secure:'Pagamento sicuro 100% 🔒',footer:'Piattaforma annunci massaggio © 2024',loginLabel:'Accedi',tabLogin:'Accedi',tabRegister:'Registrati',googleBtn:'Accedi con Google',or:'o',loginSubmit:'Accedi',nearMe:'📍 Vicino a me',favAll:'Tutti',favFav:'Preferiti',lbImg:'Foto (opzionale)',uploadHint:'Clicca per aggiungere','loginLabel':'Accedi','tabLogin':'Accedi','tabRegister':'Registrati','googleBtn':'Accedi con Google','or':'o','loginSubmit':'Accedi','nearMe':'📍 Vicino a me','lbImg':'Foto (opzionale)','uploadHint':'Tocca per aggiungere foto','favAll':'Tutti','favFav':'Preferiti','rateLabel':'Valuta','sendMsg':'Messaggio','msgEmpty':'Nessun messaggio','msgPH':'Scrivi...'},
+    payMethod:'Metodo di pagamento:',secure:'Pagamento sicuro 100% 🔒',footer:'Piattaforma annunci massaggio © 2025',loginLabel:'Accedi',tabLogin:'Accedi',tabRegister:'Registrati',googleBtn:'Accedi con Google',or:'o',loginSubmit:'Accedi',nearMe:'📍 Vicino a me',favAll:'Tutti',favFav:'Preferiti',lbImg:'Foto (opzionale)',uploadHint:'Clicca per aggiungere','loginLabel':'Accedi','tabLogin':'Accedi','tabRegister':'Registrati','googleBtn':'Accedi con Google','or':'o','loginSubmit':'Accedi','nearMe':'📍 Vicino a me','lbImg':'Foto (opzionale)','uploadHint':'Tocca per aggiungere foto','favAll':'Tutti','favFav':'Preferiti','rateLabel':'Valuta','sendMsg':'Messaggio','msgEmpty':'Nessun messaggio','msgPH':'Scrivi...'},
 
   tr:{dir:'ltr',flag:'🇹🇷',name:'Türkçe',
     logoSub:'Masaj ilanları',
@@ -2547,7 +2541,7 @@ const T = {
     callNow:'📞 Ara',whatsapp:'💬 WhatsApp',featuredTag:'⭐ PRO İlan',rateLabel:'Değerlendir',sendMsg:'Mesaj gönder',msgEmpty:'Mesaj yok',msgPH:'Mesaj yaz...',mapTitle:'İlan haritası',favAll:'Tümü',favFav:'Favoriler',
     proSub:'Aylık abonelik',proPrice:'99 <span>DH / ay</span>',
     proF:['⭐ İlanınız en üstte','🔝 PRO rozeti','📊 İstatistikler','🔄 Otomatik yenileme','📞 Öne çıkan numara','💬 Öncelikli destek 24/7'],
-    payMethod:'Ödeme yöntemi:',secure:'%100 güvenli ödeme 🔒',footer:'Masaj ilan platformu © 2024','loginLabel':'Giriş','tabLogin':'Giriş Yap','tabRegister':'Kayıt Ol','googleBtn':'Google ile Giriş','or':'veya','loginSubmit':'Giriş Yap','nearMe':'📍 Yakınımda','lbImg':'Fotoğraf (isteğe bağlı)','uploadHint':'Fotoğraf eklemek için tıkla','favAll':'Tümü','favFav':'Favoriler','rateLabel':'Değerlendir','sendMsg':'Mesaj','msgEmpty':'Mesaj yok','msgPH':'Yaz...'},
+    payMethod:'Ödeme yöntemi:',secure:'%100 güvenli ödeme 🔒',footer:'Masaj ilan platformu © 2025','loginLabel':'Giriş','tabLogin':'Giriş Yap','tabRegister':'Kayıt Ol','googleBtn':'Google ile Giriş','or':'veya','loginSubmit':'Giriş Yap','nearMe':'📍 Yakınımda','lbImg':'Fotoğraf (isteğe bağlı)','uploadHint':'Fotoğraf eklemek için tıkla','favAll':'Tümü','favFav':'Favoriler','rateLabel':'Değerlendir','sendMsg':'Mesaj','msgEmpty':'Mesaj yok','msgPH':'Yaz...'},
 
   ru:{dir:'ltr',flag:'🇷🇺',name:'Русский',
     logoSub:'Объявления массаж',
@@ -2565,7 +2559,7 @@ const T = {
     callNow:'📞 Позвонить',whatsapp:'💬 WhatsApp',featuredTag:'⭐ PRO Объявление',rateLabel:'Оценить',sendMsg:'Написать',msgEmpty:'Нет сообщений',msgPH:'Написать сообщение...',mapTitle:'Карта объявлений',favAll:'Все',favFav:'Избранное',
     proSub:'Ежемесячная подписка',proPrice:'99 <span>DH / месяц</span>',
     proF:['⭐ Объявление вверху','🔝 Значок PRO','📊 Статистика','🔄 Автообновление','📞 Выделенный номер','💬 Приоритетная поддержка 24/7'],
-    payMethod:'Способ оплаты:',secure:'100% безопасная оплата 🔒',footer:'Платформа объявлений массажа © 2024','loginLabel':'Войти','tabLogin':'Войти','tabRegister':'Регистрация','googleBtn':'Войти через Google','or':'или','loginSubmit':'Войти','nearMe':'📍 Рядом со мной','lbImg':'Фото (необязательно)','uploadHint':'Нажмите для фото','favAll':'Все','favFav':'Избранное','rateLabel':'Оценить','sendMsg':'Сообщение','msgEmpty':'Нет сообщений','msgPH':'Написать...'},
+    payMethod:'Способ оплаты:',secure:'100% безопасная оплата 🔒',footer:'Платформа объявлений массажа © 2025','loginLabel':'Войти','tabLogin':'Войти','tabRegister':'Регистрация','googleBtn':'Войти через Google','or':'или','loginSubmit':'Войти','nearMe':'📍 Рядом со мной','lbImg':'Фото (необязательно)','uploadHint':'Нажмите для фото','favAll':'Все','favFav':'Избранное','rateLabel':'Оценить','sendMsg':'Сообщение','msgEmpty':'Нет сообщений','msgPH':'Написать...'},
 
   zh:{dir:'ltr',flag:'🇨🇳',name:'中文',
     logoSub:'按摩广告平台',
@@ -2583,7 +2577,7 @@ const T = {
     callNow:'📞 立即致电',whatsapp:'💬 WhatsApp',featuredTag:'⭐ PRO广告',rateLabel:'评分',sendMsg:'发送消息',msgEmpty:'暂无消息',msgPH:'输入消息...',mapTitle:'广告地图',favAll:'全部',favFav:'收藏',
     proSub:'月度订阅',proPrice:'99 <span>DH / 月</span>',
     proF:['⭐ 广告排名第一','🔝 PRO徽章','📊 浏览统计','🔄 每周自动更新','📞 突出电话号码','💬 24/7优先支持'],
-    payMethod:'选择付款方式:',secure:'100%安全支付 🔒',footer:'按摩广告平台 © 2024','loginLabel':'登录','tabLogin':'登录','tabRegister':'注册','googleBtn':'使用Google登录','or':'或','loginSubmit':'登录','nearMe':'📍 附近','lbImg':'图片（可选）','uploadHint':'点击添加图片','favAll':'全部','favFav':'收藏','rateLabel':'评分','sendMsg':'发消息','msgEmpty':'暂无消息','msgPH':'输入...'},
+    payMethod:'选择付款方式:',secure:'100%安全支付 🔒',footer:'按摩广告平台 © 2025','loginLabel':'登录','tabLogin':'登录','tabRegister':'注册','googleBtn':'使用Google登录','or':'或','loginSubmit':'登录','nearMe':'📍 附近','lbImg':'图片（可选）','uploadHint':'点击添加图片','favAll':'全部','favFav':'收藏','rateLabel':'评分','sendMsg':'发消息','msgEmpty':'暂无消息','msgPH':'输入...'},
 
   pt:{dir:'ltr',flag:'🇵🇹',name:'Português',
     logoSub:'Anúncios massagem',
@@ -2601,7 +2595,7 @@ const T = {
     callNow:'📞 Ligar',whatsapp:'💬 WhatsApp',featuredTag:'⭐ Anúncio PRO',rateLabel:'Avaliar',sendMsg:'Enviar mensagem',msgEmpty:'Sem mensagens',msgPH:'Escrever mensagem...',mapTitle:'Mapa de anúncios',favAll:'Todos',favFav:'Favoritos',
     proSub:'Subscrição mensal',proPrice:'99 <span>DH / mês</span>',
     proF:['⭐ Anúncio no topo','🔝 Distintivo PRO','📊 Estatísticas','🔄 Renovação automática','📞 Número em destaque','💬 Suporte prioritário 24/7'],
-    payMethod:'Método de pagamento:',secure:'Pagamento 100% seguro 🔒',footer:'Plataforma de anúncios de massagem © 2024',loginLabel:'Entrar',tabLogin:'Entrar',tabRegister:'Registrar',googleBtn:'Entrar com Google',or:'ou',loginSubmit:'Entrar',nearMe:'📍 Perto de mim',favAll:'Todos',favFav:'Favoritos',lbImg:'Foto (opcional)',uploadHint:'Clique para adicionar','loginLabel':'Entrar','tabLogin':'Entrar','tabRegister':'Registrar','googleBtn':'Entrar com Google','or':'ou','loginSubmit':'Entrar','nearMe':'📍 Perto de mim','lbImg':'Foto (opcional)','uploadHint':'Toque para adicionar foto','favAll':'Todos','favFav':'Favoritos','rateLabel':'Avaliar','sendMsg':'Mensagem','msgEmpty':'Sem mensagens','msgPH':'Escrever...'},
+    payMethod:'Método de pagamento:',secure:'Pagamento 100% seguro 🔒',footer:'Plataforma de anúncios de massagem © 2025',loginLabel:'Entrar',tabLogin:'Entrar',tabRegister:'Registrar',googleBtn:'Entrar com Google',or:'ou',loginSubmit:'Entrar',nearMe:'📍 Perto de mim',favAll:'Todos',favFav:'Favoritos',lbImg:'Foto (opcional)',uploadHint:'Clique para adicionar','loginLabel':'Entrar','tabLogin':'Entrar','tabRegister':'Registrar','googleBtn':'Entrar com Google','or':'ou','loginSubmit':'Entrar','nearMe':'📍 Perto de mim','lbImg':'Foto (opcional)','uploadHint':'Toque para adicionar foto','favAll':'Todos','favFav':'Favoritos','rateLabel':'Avaliar','sendMsg':'Mensagem','msgEmpty':'Sem mensagens','msgPH':'Escrever...'},
 
   pl:{dir:'ltr',flag:'🇵🇱',name:'Polski',
     logoSub:'Ogłoszenia masaż',
@@ -2619,13 +2613,13 @@ const T = {
     callNow:'📞 Zadzwoń',whatsapp:'💬 WhatsApp',featuredTag:'⭐ Ogłoszenie PRO',rateLabel:'Oceń',sendMsg:'Wyślij wiadomość',msgEmpty:'Brak wiadomości',msgPH:'Napisz wiadomość...',mapTitle:'Mapa ogłoszeń',favAll:'Wszystkie',favFav:'Ulubione',
     proSub:'Subskrypcja miesięczna',proPrice:'99 <span>DH / miesiąc</span>',
     proF:['⭐ Ogłoszenie na górze','🔝 Odznaka PRO','📊 Statystyki','🔄 Automatyczne odnowienie','📞 Wyróżniony numer','💬 Priorytetowe wsparcie 24/7'],
-    payMethod:'Metoda płatności:',secure:'100% bezpieczna płatność 🔒',footer:'Platforma ogłoszeń masażu © 2024',loginLabel:'Zaloguj',tabLogin:'Zaloguj się',tabRegister:'Zarejestruj się',googleBtn:'Zaloguj przez Google',or:'lub',loginSubmit:'Zaloguj się',nearMe:'📍 W pobliżu',favAll:'Wszystkie',favFav:'Ulubione',lbImg:'Zdjęcie (opcjonalne)',uploadHint:'Kliknij aby dodać'},
+    payMethod:'Metoda płatności:',secure:'100% bezpieczna płatność 🔒',footer:'Platforma ogłoszeń masażu © 2025',loginLabel:'Zaloguj',tabLogin:'Zaloguj się',tabRegister:'Zarejestruj się',googleBtn:'Zaloguj przez Google',or:'lub',loginSubmit:'Zaloguj się',nearMe:'📍 W pobliżu',favAll:'Wszystkie',favFav:'Ulubione',lbImg:'Zdjęcie (opcjonalne)',uploadHint:'Kliknij aby dodać'},
 
-  th:{dir:'ltr',flag:'🇹🇭',name:'ภาษาไทย',logoSub:'ประกาศนวด',heroTitle:'ค้นหาบริการนวด<em>ที่ดีที่สุด</em>',heroSub:'ประกาศจริงจากผู้เชี่ยวชาญ',searchPH:'นวดกีฬา, สปา...',searchBtn:'ค้นหา',filterLabel:'ประเภท:',all:'ทั้งหมด',sport:'🏃 กีฬา',relax:'🌿 ผ่อนคลาย',med:'💆 การแพทย์',spa:'🛁 สปา',thai:'🌸 ไทย',allCities:'🌍 ทุกประเทศ',priceLabel:'💰 ราคา:',ageLabel:'🎂 อายุ:',from:'จาก',to:'ถึง',reset:'↺ รีเซ็ต',sTitle:'ประกาศ',sAvail:'รายการ',loading:'กำลังโหลด...',noResults:'ไม่พบประกาศ',postBtn:'+ ลงประกาศ',proBtn:'⭐ Relax Pro',postModalTitle:'ลงประกาศ',lbTitle:'หัวข้อ *',lbTitlePH:'เช่น: นวดกีฬา',lbType:'ประเภท *',lbCity:'เมือง *',lbPrice:'ราคา *',lbAge:'อายุ *',lbPhone:'โทรศัพท์ *',lbDesc:'รายละเอียด *',lbDescPH:'อธิบาย...',submitBtn:'ลงประกาศฟรี 🚀',perHour:'DH/ชม',years:'ปี',callNow:'📞 โทร',whatsapp:'💬 WhatsApp',featuredTag:'⭐ PRO',proSub:'สมัครรายเดือน',proPrice:'99 <span>DH / เดือน</span>',proF:['⭐ อยู่ด้านบน','🔝 ป้าย PRO','📊 สถิติ','🔄 ต่ออายุ','📞 เด่นชัด','💬 24/7'],payMethod:'เลือกวิธีชำระ:',secure:'ปลอดภัย 100% 🔒',footer:'แพลตฟอร์มนวด © 2024',rateLabel:'ให้คะแนน',sendMsg:'ส่งข้อความ',msgEmpty:'ไม่มีข้อความ',msgPH:'พิมพ์...',mapTitle:'แผนที่',favAll:'ทั้งหมด',favFav:'โปรด',loginLabel:'เข้าสู่ระบบ',tabLogin:'เข้าสู่ระบบ',tabRegister:'สมัครสมาชิก',googleBtn:'เข้าด้วย Google',or:'หรือ',loginSubmit:'เข้าสู่ระบบ',nearMe:'📍 ใกล้ฉัน',lbImg:'รูปภาพ',uploadHint:'แตะเพื่อเพิ่ม'},
+  th:{dir:'ltr',flag:'🇹🇭',name:'ภาษาไทย',logoSub:'ประกาศนวด',heroTitle:'ค้นหาบริการนวด<em>ที่ดีที่สุด</em>',heroSub:'ประกาศจริงจากผู้เชี่ยวชาญ',searchPH:'นวดกีฬา, สปา...',searchBtn:'ค้นหา',filterLabel:'ประเภท:',all:'ทั้งหมด',sport:'🏃 กีฬา',relax:'🌿 ผ่อนคลาย',med:'💆 การแพทย์',spa:'🛁 สปา',thai:'🌸 ไทย',allCities:'🌍 ทุกประเทศ',priceLabel:'💰 ราคา:',ageLabel:'🎂 อายุ:',from:'จาก',to:'ถึง',reset:'↺ รีเซ็ต',sTitle:'ประกาศ',sAvail:'รายการ',loading:'กำลังโหลด...',noResults:'ไม่พบประกาศ',postBtn:'+ ลงประกาศ',proBtn:'⭐ Relax Pro',postModalTitle:'ลงประกาศ',lbTitle:'หัวข้อ *',lbTitlePH:'เช่น: นวดกีฬา',lbType:'ประเภท *',lbCity:'เมือง *',lbPrice:'ราคา *',lbAge:'อายุ *',lbPhone:'โทรศัพท์ *',lbDesc:'รายละเอียด *',lbDescPH:'อธิบาย...',submitBtn:'ลงประกาศฟรี 🚀',perHour:'DH/ชม',years:'ปี',callNow:'📞 โทร',whatsapp:'💬 WhatsApp',featuredTag:'⭐ PRO',proSub:'สมัครรายเดือน',proPrice:'99 <span>DH / เดือน</span>',proF:['⭐ อยู่ด้านบน','🔝 ป้าย PRO','📊 สถิติ','🔄 ต่ออายุ','📞 เด่นชัด','💬 24/7'],payMethod:'เลือกวิธีชำระ:',secure:'ปลอดภัย 100% 🔒',footer:'แพลตฟอร์มนวด © 2025',rateLabel:'ให้คะแนน',sendMsg:'ส่งข้อความ',msgEmpty:'ไม่มีข้อความ',msgPH:'พิมพ์...',mapTitle:'แผนที่',favAll:'ทั้งหมด',favFav:'โปรด',loginLabel:'เข้าสู่ระบบ',tabLogin:'เข้าสู่ระบบ',tabRegister:'สมัครสมาชิก',googleBtn:'เข้าด้วย Google',or:'หรือ',loginSubmit:'เข้าสู่ระบบ',nearMe:'📍 ใกล้ฉัน',lbImg:'รูปภาพ',uploadHint:'แตะเพื่อเพิ่ม'},
 
-  ko:{dir:'ltr',flag:'🇰🇷',name:'한국어',logoSub:'마사지 광고',heroTitle:'최고의 <em>마사지</em> 서비스',heroSub:'전문가들의 실제 광고',searchPH:'스포츠 마사지...',searchBtn:'검색',filterLabel:'유형:',all:'전체',sport:'🏃 스포츠',relax:'🌿 릴렉스',med:'💆 의료',spa:'🛁 스파',thai:'🌸 태국',allCities:'🌍 모든 국가',priceLabel:'💰 가격:',ageLabel:'🎂 나이:',from:'부터',to:'까지',reset:'↺ 초기화',sTitle:'광고',sAvail:'개',loading:'로딩 중...',noResults:'광고 없음',postBtn:'+ 올리기',proBtn:'⭐ Relax Pro',postModalTitle:'광고 올리기',lbTitle:'제목 *',lbTitlePH:'예: 전문 마사지',lbType:'유형 *',lbCity:'도시 *',lbPrice:'가격 *',lbAge:'나이 *',lbPhone:'전화 *',lbDesc:'설명 *',lbDescPH:'설명하세요...',submitBtn:'무료 올리기 🚀',perHour:'DH/시',years:'세',callNow:'📞 전화',whatsapp:'💬 WhatsApp',featuredTag:'⭐ PRO',proSub:'월간 구독',proPrice:'99 <span>DH / 월</span>',proF:['⭐ 최상단','🔝 PRO 배지','📊 통계','🔄 자동갱신','📞 강조','💬 24/7'],payMethod:'결제 방법:',secure:'100% 안전 🔒',footer:'마사지 광고 플랫폼 © 2024',rateLabel:'평가',sendMsg:'메시지',msgEmpty:'메시지 없음',msgPH:'입력...',mapTitle:'지도',favAll:'전체',favFav:'즐겨찾기',loginLabel:'로그인',tabLogin:'로그인',tabRegister:'회원가입',googleBtn:'Google 로그인',or:'또는',loginSubmit:'로그인',nearMe:'📍 내 근처',lbImg:'사진',uploadHint:'탭하여 추가'},
+  ko:{dir:'ltr',flag:'🇰🇷',name:'한국어',logoSub:'마사지 광고',heroTitle:'최고의 <em>마사지</em> 서비스',heroSub:'전문가들의 실제 광고',searchPH:'스포츠 마사지...',searchBtn:'검색',filterLabel:'유형:',all:'전체',sport:'🏃 스포츠',relax:'🌿 릴렉스',med:'💆 의료',spa:'🛁 스파',thai:'🌸 태국',allCities:'🌍 모든 국가',priceLabel:'💰 가격:',ageLabel:'🎂 나이:',from:'부터',to:'까지',reset:'↺ 초기화',sTitle:'광고',sAvail:'개',loading:'로딩 중...',noResults:'광고 없음',postBtn:'+ 올리기',proBtn:'⭐ Relax Pro',postModalTitle:'광고 올리기',lbTitle:'제목 *',lbTitlePH:'예: 전문 마사지',lbType:'유형 *',lbCity:'도시 *',lbPrice:'가격 *',lbAge:'나이 *',lbPhone:'전화 *',lbDesc:'설명 *',lbDescPH:'설명하세요...',submitBtn:'무료 올리기 🚀',perHour:'DH/시',years:'세',callNow:'📞 전화',whatsapp:'💬 WhatsApp',featuredTag:'⭐ PRO',proSub:'월간 구독',proPrice:'99 <span>DH / 월</span>',proF:['⭐ 최상단','🔝 PRO 배지','📊 통계','🔄 자동갱신','📞 강조','💬 24/7'],payMethod:'결제 방법:',secure:'100% 안전 🔒',footer:'마사지 광고 플랫폼 © 2025',rateLabel:'평가',sendMsg:'메시지',msgEmpty:'메시지 없음',msgPH:'입력...',mapTitle:'지도',favAll:'전체',favFav:'즐겨찾기',loginLabel:'로그인',tabLogin:'로그인',tabRegister:'회원가입',googleBtn:'Google 로그인',or:'또는',loginSubmit:'로그인',nearMe:'📍 내 근처',lbImg:'사진',uploadHint:'탭하여 추가'},
 
-  cs:{dir:'ltr',flag:'🇨🇿',name:'Čeština',logoSub:'Inzeráty masáž',heroTitle:'Najděte <em>nejlepší</em> masáže',heroSub:'Skutečné inzeráty od profesionálů',searchPH:'Sportovní masáž...',searchBtn:'Hledat',filterLabel:'Typ:',all:'Vše',sport:'🏃 Sport',relax:'🌿 Relaxace',med:'💆 Léčebný',spa:'🛁 Spa',thai:'🌸 Thajský',allCities:'🌍 Všechny',priceLabel:'💰 Cena:',ageLabel:'🎂 Věk:',from:'Od',to:'Do',reset:'↺ Reset',sTitle:'Inzeráty',sAvail:'dostupných',loading:'Načítání...',noResults:'Nic nenalezeno',postBtn:'+ Přidat',proBtn:'⭐ Relax Pro',postModalTitle:'Přidat inzerát',lbTitle:'Název *',lbTitlePH:'Např: Masáž',lbType:'Typ *',lbCity:'Město *',lbPrice:'Cena *',lbAge:'Věk *',lbPhone:'Telefon *',lbDesc:'Popis *',lbDescPH:'Popište...',submitBtn:'Zveřejnit zdarma 🚀',perHour:'DH/h',years:'let',callNow:'📞 Zavolat',whatsapp:'💬 WhatsApp',featuredTag:'⭐ PRO',proSub:'Měsíční předplatné',proPrice:'99 <span>DH / měs</span>',proF:['⭐ Nahoře','🔝 Odznak PRO','📊 Statistiky','🔄 Obnova','📞 Zvýrazněné','💬 24/7'],payMethod:'Způsob platby:',secure:'100% bezpečné 🔒',footer:'Platforma masáží © 2024',rateLabel:'Hodnotit',sendMsg:'Zpráva',msgEmpty:'Žádné zprávy',msgPH:'Psát...',mapTitle:'Mapa',favAll:'Vše',favFav:'Oblíbené',loginLabel:'Přihlásit',tabLogin:'Přihlásit se',tabRegister:'Registrovat',googleBtn:'Přihlásit Google',or:'nebo',loginSubmit:'Přihlásit se',nearMe:'📍 Blízko mě',lbImg:'Foto',uploadHint:'Klikněte pro přidání'}
+  cs:{dir:'ltr',flag:'🇨🇿',name:'Čeština',logoSub:'Inzeráty masáž',heroTitle:'Najděte <em>nejlepší</em> masáže',heroSub:'Skutečné inzeráty od profesionálů',searchPH:'Sportovní masáž...',searchBtn:'Hledat',filterLabel:'Typ:',all:'Vše',sport:'🏃 Sport',relax:'🌿 Relaxace',med:'💆 Léčebný',spa:'🛁 Spa',thai:'🌸 Thajský',allCities:'🌍 Všechny',priceLabel:'💰 Cena:',ageLabel:'🎂 Věk:',from:'Od',to:'Do',reset:'↺ Reset',sTitle:'Inzeráty',sAvail:'dostupných',loading:'Načítání...',noResults:'Nic nenalezeno',postBtn:'+ Přidat',proBtn:'⭐ Relax Pro',postModalTitle:'Přidat inzerát',lbTitle:'Název *',lbTitlePH:'Např: Masáž',lbType:'Typ *',lbCity:'Město *',lbPrice:'Cena *',lbAge:'Věk *',lbPhone:'Telefon *',lbDesc:'Popis *',lbDescPH:'Popište...',submitBtn:'Zveřejnit zdarma 🚀',perHour:'DH/h',years:'let',callNow:'📞 Zavolat',whatsapp:'💬 WhatsApp',featuredTag:'⭐ PRO',proSub:'Měsíční předplatné',proPrice:'99 <span>DH / měs</span>',proF:['⭐ Nahoře','🔝 Odznak PRO','📊 Statistiky','🔄 Obnova','📞 Zvýrazněné','💬 24/7'],payMethod:'Způsob platby:',secure:'100% bezpečné 🔒',footer:'Platforma masáží © 2025',rateLabel:'Hodnotit',sendMsg:'Zpráva',msgEmpty:'Žádné zprávy',msgPH:'Psát...',mapTitle:'Mapa',favAll:'Vše',favFav:'Oblíbené',loginLabel:'Přihlásit',tabLogin:'Přihlásit se',tabRegister:'Registrovat',googleBtn:'Přihlásit Google',or:'nebo',loginSubmit:'Přihlásit se',nearMe:'📍 Blízko mě',lbImg:'Foto',uploadHint:'Klikněte pro přidání'}
 };
 
 let lang = 'ar';
@@ -3292,16 +3286,15 @@ async function submitAd() {
     allListings.unshift({id:ref.id,title,type,city,price,age,phone,desc,isPro:false,imgUrl,date:new Date().toLocaleDateString('ar-MA')});
     filtered=[...allListings];
     localStorage.setItem('relax_lastpost', Date.now().toString());
-  uploadedPhotos = []; // Reset extra photos
-  document.getElementById('photosStrip').style.display = 'none';
-  document.getElementById('adNegotiable').checked = false;
-  document.querySelectorAll('#postAvailGrid .avail-day').forEach(el => el.classList.remove('active'));
-  closePostModal();
+    uploadedPhotos = [];
+    document.getElementById('photosStrip').style.display = 'none';
+    document.getElementById('adNegotiable').checked = false;
+    document.querySelectorAll('#postAvailGrid .avail-day').forEach(el => el.classList.remove('active'));
     renderListings();
     trackEvent('post_ad', 'engagement', type);
-  showToast('✅ تم نشر إعلانك بنجاح!');
+    closePostModal();
+    showToast('✅ تم نشر إعلانك بنجاح!');
     ['adTitle','adDesc','adPrice','adAge','adPhone'].forEach(id=>document.getElementById(id).value='');
-    // Reset image
     selectedImgFile = null;
     uploadedImgUrl = null;
     document.getElementById('imgPreview').style.display = 'none';
@@ -5000,13 +4993,6 @@ function openForgotPassword() {
     .then(() => showToast('✅ تم إرسال رابط إعادة التعيين لإيميلك!'))
     .catch(e => showToast('❌ ' + (e.code === 'auth/user-not-found' ? 'الإيميل غير موجود' : e.message), true));
 }
-
-// ===================== COOKIE CONSENT =====================
-function acceptCookies() {
-  localStorage.setItem('relax_cookies', '1');
-  document.getElementById('cookieBanner').classList.add('hidden');
-}
-// Cookie init handled in main DOMContentLoaded
 
 // ===================== PWA =====================
 // PWA install prompt handled in SW registration block above
