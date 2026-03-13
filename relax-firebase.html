@@ -42,7 +42,12 @@
 
   onAuthStateChanged(auth, user => {
     window._currentUser = user;
-    if (window.onUserChanged) window.onUserChanged(user);
+    if (window.onUserChanged) {
+      window.onUserChanged(user);
+    } else {
+      // onUserChanged not yet defined - retry after DOM is ready
+      window._pendingAuthUser = user;
+    }
   });
 
   window._googleLogin = () => signInWithPopup(auth, provider);
@@ -2269,7 +2274,7 @@ service cloud.firestore {
       <h3 style="color:var(--navy);margin:1rem 0 0.5rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem">6. أمان البيانات</h3>
       <p>نستخدم Firebase Authentication وFirestore المشفرَين من Google لحماية بياناتك. جميع الاتصالات مشفرة بـ HTTPS.</p>
       <h3 style="color:var(--navy);margin:1rem 0 0.5rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem">7. التواصل</h3>
-      <p>لأي استفسار حول خصوصيتك: <strong>amarir2019buz@gmail.com</strong> أو WhatsApp: <strong>+212 777 318 753</strong></p>
+      <p>لأي استفسار حول خصوصيتك: <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1b7a767a697269292b2a22796e615b7c767a727735787476">[email&#160;protected]</a></strong> أو WhatsApp: <strong>+212 777 318 753</strong></p>
     </div>
   </div>
 </div>
@@ -2291,7 +2296,7 @@ service cloud.firestore {
       <h3 style="color:var(--navy);margin:1rem 0 0.5rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem">5. إخلاء المسؤولية</h3>
       <p>Relax منصة وسيطة فقط. لسنا مسؤولين عن صحة المعلومات المنشورة أو جودة الخدمات المعروضة. التعاملات بين المستخدمين تمت على مسؤوليتهم الكاملة.</p>
       <h3 style="color:var(--navy);margin:1rem 0 0.5rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem">6. التواصل</h3>
-      <p>لأي شكوى أو استفسار: <strong>amarir2019buz@gmail.com</strong> أو WhatsApp: <strong>+212 777 318 753</strong></p>
+      <p>لأي شكوى أو استفسار: <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2d4c404c5f445f1f1d1c144f58576d4a404c4441034e4240">[email&#160;protected]</a></strong> أو WhatsApp: <strong>+212 777 318 753</strong></p>
     </div>
   </div>
 </div>
@@ -2341,11 +2346,11 @@ service cloud.firestore {
             <div style="font-size:0.75rem;color:#86efac;margin-top:2px">الرد خلال دقائق</div>
           </div>
         </a>
-        <a href="mailto:amarir2019buz@gmail.com" style="display:flex;align-items:center;gap:1rem;background:var(--cream);border:1.5px solid rgba(232,223,208,0.6);border-radius:14px;padding:1rem;text-decoration:none;transition:all 0.2s" onmouseover="this.style.background='#ede5d8'" onmouseout="this.style.background='var(--cream)'">
+        <a href="/cdn-cgi/l/email-protection#dabbb7bba8b3a8e8eaebe3b8afa09abdb7bbb3b6f4b9b5b7" style="display:flex;align-items:center;gap:1rem;background:var(--cream);border:1.5px solid rgba(232,223,208,0.6);border-radius:14px;padding:1rem;text-decoration:none;transition:all 0.2s" onmouseover="this.style.background='#ede5d8'" onmouseout="this.style.background='var(--cream)'">
           <span style="font-size:1.8rem">📧</span>
           <div>
             <div style="font-weight:700;color:var(--navy);font-size:0.95rem">البريد الإلكتروني</div>
-            <div style="font-size:0.82rem;color:var(--blue)">amarir2019buz@gmail.com</div>
+            <div style="font-size:0.82rem;color:var(--blue)"><span class="__cf_email__" data-cfemail="b5d4d8d4c7dcc78785848cd7c0cff5d2d8d4dcd99bd6dad8">[email&#160;protected]</span></div>
             <div style="font-size:0.75rem;color:var(--warm);margin-top:2px">الرد خلال 24 ساعة</div>
           </div>
         </a>
@@ -2396,7 +2401,7 @@ service cloud.firestore {
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ===================== TRANSLATIONS =====================
 const T = {
   ar:{dir:'rtl',flag:'🇲🇦',name:'العربية',
@@ -3461,6 +3466,12 @@ window.onUserChanged = function(user) {
     }
   }
 };
+
+// Process any auth state that fired before onUserChanged was defined
+if (window._pendingAuthUser !== undefined) {
+  window.onUserChanged(window._pendingAuthUser);
+  delete window._pendingAuthUser;
+}
 
 async function doLogin() {
   if (!window._firebaseReady) { showToast('⚠️ انتظر قليلاً، Firebase لا تزال تتحمل...', true); return; }
@@ -5218,7 +5229,14 @@ async function openAnalytics() {
 const savedLang = localStorage.getItem('relax_lang') || 'ar';
 if (savedLang !== 'ar') setLang(savedLang);
 document.getElementById('favCount').textContent = favorites.size;
-window.addEventListener('firebaseReady',loadListings);
+
+// Fix race condition: Firebase module may fire 'firebaseReady' before this listener registers
+// So we check if it already fired (window._firebaseReady), otherwise wait for the event
+if (window._firebaseReady && window._db) {
+  loadListings();
+} else {
+  window.addEventListener('firebaseReady', loadListings);
+}
 document.addEventListener('DOMContentLoaded', () => {
   initDarkToggleBtn();
   // Search enter key saves history
@@ -5229,20 +5247,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   // Init currency selector
-  const sel = document.getElementById('currencySelect');
-  if (sel) sel.value = currentCurrency;
-  // Cookie banner
-  if (localStorage.getItem('relax_cookies') === '1') {
-    const b = document.getElementById('cookieBanner');
-    if (b) b.classList.add('hidden');
-  }
-  // Render recent
-  renderRecentlyViewed();
-});
-window.addEventListener('firebaseReady', () => setTimeout(checkSharedAd, 2000));
-updateLabels();
-// Set initial lang button text
-document.getElementById('langBtn').innerHTML = '🌐 ▾';
-setTimeout(()=>{
-  if(!window._firebaseReady)
- 
+  const sel = document.getElementById('currencySe
