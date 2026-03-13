@@ -1,0 +1,145 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===== HELPER FUNCTIONS =====
+    function isAuth() {
+      return request.auth != null;
+    }
+    function isOwner(uid) {
+      return isAuth() && request.auth.uid == uid;
+    }
+    function isAdmin() {
+      return isAuth() && request.auth.token.admin == true;
+    }
+    function isValidListing() {
+      let d = request.resource.data;
+      return d.keys().hasAll(['title','city','price','type','userId'])
+        && d.title is string && d.title.size() >= 3 && d.title.size() <= 200
+        && d.price is number && d.price >= 0 && d.price <= 100000
+        && d.userId == request.auth.uid;
+    }
+
+    // ===== LISTINGS =====
+    match /listings/{id} {
+      allow read: if true;
+      allow create: if isAuth() && isValidListing();
+      allow update: if isAuth() && (
+          resource.data.userId == request.auth.uid
+          || isAdmin()
+          // Allow view count increments by anyone
+          || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['views']))
+        );
+      allow delete: if isAuth() && (
+          resource.data.userId == request.auth.uid || isAdmin()
+        );
+
+      // Sub-collection: reviews
+      match /reviews/{rid} {
+        allow read: if true;
+        allow create: if isAuth()
+          && request.resource.data.userId == request.auth.uid
+          && request.resource.data.text is string
+          && request.resource.data.text.size() >= 1
+          && request.resource.data.text.size() <= 1000;
+        allow update: if isAuth() && (
+            resource.data.userId == request.auth.uid
+            || isAdmin()
+            // Only allow ownerReply field update by listing owner
+            || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['ownerReply','ownerReplyAt']))
+          );
+        allow delete: if isAdmin();
+      }
+    }
+
+    // ===== RATINGS =====
+    match /ratings/{id} {
+      allow read: if true;
+      allow create: if isAuth()
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.stars is number
+        && request.resource.data.stars >= 1
+        && request.resource.data.stars <= 5;
+      allow delete: if isAdmin();
+    }
+
+    // ===== BOOKINGS =====
+    match /bookings/{id} {
+      allow create: if isAuth()
+        && request.resource.data.userId == request.auth.uid;
+      allow read: if isAuth() && (
+          resource.data.userId == request.auth.uid
+          || resource.data.adOwnerId == request.auth.uid
+          || isAdmin()
+        );
+      allow update: if isAuth() && (
+          resource.data.adOwnerId == request.auth.uid
+          || isAdmin()
+        );
+      allow delete: if isAuth() && (
+          resource.data.userId == request.auth.uid
+          || resource.data.adOwnerId == request.auth.uid
+          || isAdmin()
+        );
+    }
+
+    // ===== BOOKING NOTIFICATIONS =====
+    match /booking_notifications/{id} {
+      allow create: if isAuth();
+      allow read: if isAuth() && (
+          resource.data.toUid == request.auth.uid
+          || resource.data.fromUid == request.auth.uid
+          || isAdmin()
+        );
+      allow update: if isAuth() && resource.data.toUid == request.auth.uid;
+      allow delete: if isAuth() && (
+          resource.data.toUid == request.auth.uid || isAdmin()
+        );
+    }
+
+    // ===== MESSAGES / CHAT =====
+    match /chats/{chatId}/messages/{msgId} {
+      allow read: if isAuth() && (
+          // chatId format: adId_uid1_uid2 — only participants can read
+          request.auth.uid in chatId.split('_')
+          || isAdmin()
+        );
+      allow create: if isAuth()
+        && request.resource.data.fromUid == request.auth.uid
+        && request.resource.data.text is string
+        && request.resource.data.text.size() <= 2000;
+      allow delete: if isAdmin();
+    }
+
+    // ===== UNREAD MESSAGE NOTIFICATIONS =====
+    match /messages_unread/{id} {
+      allow create: if isAuth()
+        && request.resource.data.fromUid == request.auth.uid;
+      allow read: if isAuth() && (
+          resource.data.toUid == request.auth.uid
+          || resource.data.fromUid == request.auth.uid
+          || isAdmin()
+        );
+      allow update: if isAuth() && resource.data.toUid == request.auth.uid;
+      allow delete: if isAuth() && (
+          resource.data.toUid == request.auth.uid
+          || resource.data.fromUid == request.auth.uid
+          || isAdmin()
+        );
+    }
+
+    // ===== REPORTS =====
+    match /reports/{id} {
+      allow create: if isAuth()
+        && request.resource.data.userId == request.auth.uid;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // ===== USER PROFILES (optional) =====
+    match /users/{uid} {
+      allow read: if true;
+      allow create, update: if isOwner(uid);
+      allow delete: if isAdmin();
+    }
+  }
+}
