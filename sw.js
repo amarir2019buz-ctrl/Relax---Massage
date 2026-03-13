@@ -1,5 +1,5 @@
-// Relax PWA - Service Worker v1.2
-const CACHE_NAME = 'relax-v1.2';
+// Relax PWA - Service Worker v2.0
+const CACHE_NAME = 'relax-v2.0';
 const OFFLINE_URL = './relax-firebase.html';
 
 const PRECACHE = [
