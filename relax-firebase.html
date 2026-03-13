@@ -2823,22 +2823,31 @@ function resetFilters() {
 async function loadListings() {
   if (!window._firebaseReady) return;
   try {
-    const {collection,getDocs,query,orderBy}=window._fbModules;
-    const q=query(collection(window._db,'listings'),orderBy('createdAt','desc'));
-    const snap=await getDocs(q);
+    const {collection, getDocs, query, orderBy} = window._fbModules;
+    // Sort client-side to avoid requiring a Firestore composite index
+    const q = query(collection(window._db, 'listings'));
+    const snap = await getDocs(q);
     const now = new Date();
-    allListings=snap.docs.map(d=>({id:d.id,...d.data()})).filter(ad => {
-      if (!ad.expiresAt) return true;
-      const exp = ad.expiresAt?.toDate ? ad.expiresAt.toDate() : new Date(ad.expiresAt);
-      return exp > now;
-    });
-    filtered=[...allListings];
-    firebaseOk=true;
+    allListings = snap.docs
+      .map(d => ({id: d.id, ...d.data()}))
+      .filter(ad => {
+        if (!ad.expiresAt) return true;
+        const exp = ad.expiresAt?.toDate ? ad.expiresAt.toDate() : new Date(ad.expiresAt);
+        return exp > now;
+      })
+      .sort((a, b) => {
+        // Sort by createdAt descending (newest first)
+        const ta = a.createdAt?.toDate ? a.createdAt.toDate() : new Date(a.createdAt || 0);
+        const tb = b.createdAt?.toDate ? b.createdAt.toDate() : new Date(b.createdAt || 0);
+        return tb - ta;
+      });
+    filtered = [...allListings];
+    firebaseOk = true;
     updateCityFilter();
     renderListings();
   } catch(e) {
-    console.error(e);
-    document.getElementById('listingsGrid').innerHTML=`<div class="empty-state" style="grid-column:1/-1"><p style="font-size:2rem">⚠️</p><p style="margin-top:1rem">خطأ في Firebase</p></div>`;
+    console.error('loadListings error:', e);
+    document.getElementById('listingsGrid').innerHTML = `<div class="empty-state" style="grid-column:1/-1"><p style="font-size:2rem">⚠️</p><p style="margin-top:1rem">خطأ في تحميل البيانات: ${e.message}</p><button onclick="loadListings()" style="margin-top:1rem;padding:0.5rem 1.5rem;background:var(--gold);color:white;border:none;border-radius:10px;cursor:pointer;font-family:Tajawal;font-size:0.9rem">🔄 إعادة المحاولة</button></div>`;
   }
 }
 
@@ -3522,14 +3531,18 @@ async function loadMyAds() {
   const list = document.getElementById('dashAdsList');
   list.innerHTML = '<div class="dash-empty">جاري التحميل...</div>';
   try {
-    const {collection, getDocs, query, where, orderBy} = window._fbModules;
+    const {collection, getDocs, query, where} = window._fbModules;
     const q = query(
       collection(window._db, 'listings'),
-      where('userId', '==', currentUser.uid),
-      orderBy('createdAt', 'desc')
+      where('userId', '==', currentUser.uid)
     );
     const snap = await getDocs(q);
-    const myAds = snap.docs.map(d => ({id: d.id, ...d.data()}));
+    const myAds = snap.docs.map(d => ({id: d.id, ...d.data()}))
+      .sort((a, b) => {
+        const ta = a.createdAt?.toDate ? a.createdAt.toDate() : new Date(a.createdAt || 0);
+        const tb = b.createdAt?.toDate ? b.createdAt.toDate() : new Date(b.createdAt || 0);
+        return tb - ta;
+      });
 
     document.getElementById('statAds').textContent = myAds.length;
     const totalViews = myAds.reduce((sum, a) => sum + (a.views || 0), 0);
@@ -3744,16 +3757,16 @@ let _msgUnsubscribe = null;
 
 async function loadMessages(listingId, chatId) {
   try {
-    const {collection, query, orderBy, onSnapshot} = window._fbModules;
+    const {collection, query, onSnapshot} = window._fbModules;
     if (!chatId) chatId = 'chat_' + listingId + '_' + currentUser.uid;
     document.getElementById('msgModal').dataset.chatId = chatId;
 
-    // Unsubscribe previous listener
     if (_msgUnsubscribe) { _msgUnsubscribe(); _msgUnsubscribe = null; }
 
-    const q = query(collection(window._db, 'chats', chatId, 'messages'), orderBy('createdAt', 'asc'));
+    const q = query(collection(window._db, 'chats', chatId, 'messages'));
     _msgUnsubscribe = onSnapshot(q, (snap) => {
-      const msgs = snap.docs.map(d => d.data());
+      const msgs = snap.docs.map(d => d.data())
+        .sort((a,b)=>{const ta=a.createdAt?.toDate?a.createdAt.toDate():new Date(a.createdAt||0);const tb=b.createdAt?.toDate?b.createdAt.toDate():new Date(b.createdAt||0);return ta-tb;});
       renderMessages(msgs);
     });
   } catch(e) {
@@ -3891,9 +3904,10 @@ async function loadAdminAds() {
   const list = document.getElementById('adminAdsList');
   list.innerHTML = '<div class="dash-empty">جاري التحميل...</div>';
   try {
-    const {collection, getDocs, query, orderBy} = window._fbModules;
-    const snap = await getDocs(query(collection(window._db,'listings'), orderBy('createdAt','desc')));
-    const ads = snap.docs.map(d => ({id:d.id,...d.data()}));
+    const {collection, getDocs, query} = window._fbModules;
+    const snap = await getDocs(query(collection(window._db,'listings')));
+    const ads = snap.docs.map(d => ({id:d.id,...d.data()}))
+      .sort((a,b)=>{const ta=a.createdAt?.toDate?a.createdAt.toDate():new Date(a.createdAt||0);const tb=b.createdAt?.toDate?b.createdAt.toDate():new Date(b.createdAt||0);return tb-ta;});
     
     document.getElementById('adminStatTotal').textContent = ads.length;
     document.getElementById('adminStatPro').textContent = ads.filter(a=>a.isPro).length;
@@ -4063,10 +4077,11 @@ async function loadReviews(adId) {
   const listEl = document.getElementById('reviewsList_' + adId);
   if (!listEl) return;
   try {
-    const {collection, getDocs, query, orderBy} = window._fbModules;
-    const q = query(collection(window._db, 'listings', adId, 'reviews'), orderBy('createdAt', 'desc'));
+    const {collection, getDocs, query} = window._fbModules;
+    const q = query(collection(window._db, 'listings', adId, 'reviews'));
     const snap = await getDocs(q);
-    const reviews = snap.docs.map(d => ({_id: d.id, ...d.data()}));
+    const reviews = snap.docs.map(d => ({_id: d.id, ...d.data()}))
+      .sort((a,b)=>{const ta=a.createdAt?.toDate?a.createdAt.toDate():new Date(a.createdAt||0);const tb=b.createdAt?.toDate?b.createdAt.toDate():new Date(b.createdAt||0);return tb-ta;});
     if (!reviews.length) {
       listEl.innerHTML = '<div style="color:#888;font-size:0.82rem;padding:0.3rem 0">لا توجد تعليقات بعد — كن أول من يعلق!</div>';
       return;
@@ -4611,10 +4626,11 @@ async function openProfile(userId) {
   document.getElementById('profileName').textContent = 'جاري التحميل...';
   document.getElementById('profileAdsList').innerHTML = '';
   try {
-    const {collection, getDocs, query, where, orderBy} = window._fbModules;
-    const q = query(collection(window._db,'listings'), where('userId','==',userId), orderBy('createdAt','desc'));
+    const {collection, getDocs, query, where} = window._fbModules;
+    const q = query(collection(window._db,'listings'), where('userId','==',userId));
     const snap = await getDocs(q);
-    const ads = snap.docs.map(d => ({id:d.id,...d.data()}));
+    const ads = snap.docs.map(d => ({id:d.id,...d.data()}))
+      .sort((a,b)=>{const ta=a.createdAt?.toDate?a.createdAt.toDate():new Date(a.createdAt||0);const tb=b.createdAt?.toDate?b.createdAt.toDate():new Date(b.createdAt||0);return tb-ta;});
     if (!ads.length) { document.getElementById('profileName').textContent = 'المعلن'; return; }
     const first = ads[0];
     document.getElementById('profileName').textContent = first.userName || 'مستخدم';
@@ -4657,10 +4673,11 @@ async function openMyProfile() {
   listEl.innerHTML = '<div style="text-align:center;padding:2rem;color:#aaa;font-style:italic">⏳ جاري التحميل...</div>';
 
   try {
-    const {collection, getDocs, query, where, orderBy} = window._fbModules;
-    const q = query(collection(window._db,'listings'), where('userId','==',currentUser.uid), orderBy('createdAt','desc'));
+    const {collection, getDocs, query, where} = window._fbModules;
+    const q = query(collection(window._db,'listings'), where('userId','==',currentUser.uid));
     const snap = await getDocs(q);
-    const myAds = snap.docs.map(d => ({id:d.id,...d.data()}));
+    const myAds = snap.docs.map(d => ({id:d.id,...d.data()}))
+      .sort((a,b)=>{const ta=a.createdAt?.toDate?a.createdAt.toDate():new Date(a.createdAt||0);const tb=b.createdAt?.toDate?b.createdAt.toDate():new Date(b.createdAt||0);return tb-ta;});
 
     // Stats
     const totalViews = myAds.reduce((s,a)=>s+(a.views||0),0);
