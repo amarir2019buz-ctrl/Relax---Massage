@@ -4339,7 +4339,7 @@ function setLang(l) {
   if(respEl) {
     respEl.options[0] && (respEl.options[0].textContent = l==='ar'?'— اختر —':l==='fr'?'— Choisir —':l==='en'?'— Choose —':'— اختر —');
     respEl.options[1] && (respEl.options[1].textContent = l==='ar'?'فوري':l==='fr'?'Immédiat':l==='en'?'Immediate':'فوري');
-    respEl.options[2] && (respEl.options[2].textContent = l==='ar'?'خلال ساعة':l==='fr'?'Dans l'heure':l==='en'?'Within an hour':'خلال ساعة');
+    respEl.options[2] && (respEl.options[2].textContent = l==='ar'?'خلال ساعة':l==='fr'?'Dans l\'heure':l==='en'?'Within an hour':'خلال ساعة');
     respEl.options[3] && (respEl.options[3].textContent = l==='ar'?'خلال يوم':l==='fr'?'Dans la journée':l==='en'?'Within a day':'خلال يوم');
   }
 
@@ -4692,8 +4692,8 @@ function applyFilters() {
   const q=document.getElementById('searchInput').value.toLowerCase();
   const pMin=parseInt(document.getElementById('priceMin').value);
   const pMax=parseInt(document.getElementById('priceMax').value);
-  const aMin=parseInt(document.getElementById('ageMin').value);
-  const aMax=parseInt(document.getElementById('ageMax').value);
+  const aMin=parseInt(document.getElementById('ageMinNum')?.value || document.getElementById('ageMin')?.value || 18);
+  const aMax=parseInt(document.getElementById('ageMaxNum')?.value || document.getElementById('ageMax')?.value || 70);
   const genderVal=document.getElementById('genderFilter')?.value||'all';
   const mobileVal=document.getElementById('mobileFilter')?.value||'all';
   const source = showingFavs ? allListings.filter(l=>favorites.has(l.id)) : allListings;
@@ -9016,34 +9016,11 @@ function setAge(min, max) {
 
 // Patch resetFilters to also reset panel chips
 const _origResetFilters = window.resetFilters;
-function resetFilters() {
-  if (typeof _origResetFilters === 'function') _origResetFilters();
-  // Reset chips
-  document.querySelectorAll('#genderChips .fp-chip').forEach(c => c.classList.toggle('active', c.dataset.val === 'all'));
-  document.querySelectorAll('#mobileChips .fp-chip').forEach(c => c.classList.toggle('active', c.dataset.val === 'all'));
-  // Reset age nums
-  const ageMinN = document.getElementById('ageMinNum'); if(ageMinN) ageMinN.value = 18;
-  const ageMaxN = document.getElementById('ageMaxNum'); if(ageMaxN) ageMaxN.value = 70;
-  // Reset price nums
-  const pmN = document.getElementById('priceMinNum'); if(pmN) pmN.value = 0;
-  const pMN = document.getElementById('priceMaxNum'); if(pMN) pMN.value = 2000;
-  updateFilterBadge();
-}
+// resetFilters merged above
 
 // Patch applyFilters to read age from new inputs
-const _origSyncPrice = window.syncPriceFromNum;
 // Override updateLabels to also sync age nums
-const _origUpdateLabels = window.updateLabels;
-function updateLabels() {
-  if (typeof _origUpdateLabels === 'function') _origUpdateLabels();
-  const ageMinSlider = document.getElementById('ageMin')?.value;
-  const ageMaxSlider = document.getElementById('ageMax')?.value;
-  const ageMinN = document.getElementById('ageMinNum');
-  const ageMaxN = document.getElementById('ageMaxNum');
-  if (ageMinN && ageMinSlider !== undefined) ageMinN.value = ageMinSlider;
-  if (ageMaxN && ageMaxSlider !== undefined) ageMaxN.value = ageMaxSlider;
-  updateFilterBadge();
-}
+// updateLabels merged above
 
 
 // ===================== GPS SYSTEM =====================
@@ -9616,6 +9593,74 @@ function initInfiniteScroll() {
 }
 
 window.addEventListener('DOMContentLoaded', () => setTimeout(initInfiniteScroll, 1200));
+
+
+// ===== MISSING PRO MODAL FUNCTIONS =====
+function selectPlan(el) {
+  document.querySelectorAll('.pro-plan-card').forEach(c => c.classList.remove('active'));
+  if (el) el.classList.add('active');
+}
+
+function selectPayMethod(method, el) {
+  document.querySelectorAll('.pay-method-btn').forEach(b => b.classList.remove('active'));
+  if (el) el.classList.add('active');
+  // Show/hide card form
+  const cardForm = document.getElementById('cardPayForm');
+  if (cardForm) cardForm.style.display = method === 'card' ? 'block' : 'none';
+}
+
+async function payWithCard() {
+  const card = document.getElementById('cardNumber')?.value?.replace(/\s/g,'');
+  const expiry = document.getElementById('cardExpiry')?.value;
+  const cvv = document.getElementById('cardCVV')?.value;
+  if (!card || card.length < 16 || !expiry || !cvv) {
+    showToast('⚠️ أكمل بيانات البطاقة', true); return;
+  }
+  // Simulate payment (replace with Stripe in production)
+  const btn = event?.target;
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ جاري المعالجة...'; }
+  await new Promise(r => setTimeout(r, 2000));
+  showToast('✅ تم الدفع! سيتم تفعيل PRO خلال دقائق');
+  document.getElementById('proModal')?.classList.remove('open');
+  if (btn) { btn.disabled = false; btn.textContent = 'ادفع الآن'; }
+}
+
+// ===== MISSING POST FORM FUNCTIONS =====
+function resetPostForm() {
+  const fields = ['adTitle','adDesc','adPrice','adAge','adPhone','adCoupon'];
+  fields.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  // Reset image
+  const imgPreview = document.getElementById('imgPreview');
+  const placeholder = document.getElementById('uploadPlaceholder');
+  if (imgPreview) { imgPreview.src = ''; imgPreview.style.display = 'none'; }
+  if (placeholder) placeholder.style.display = 'flex';
+  uploadedImgUrl = null;
+  uploadedPhotos = [];
+  selectedImgFile = null;
+  // Reset video
+  if (typeof removeVideo === 'function') removeVideo();
+  // Reset photo strip
+  const strip = document.getElementById('photosStrip');
+  if (strip) { strip.style.display = 'none'; strip.innerHTML = ''; }
+  // Reset counter
+  const counter = document.getElementById('descCounter');
+  if (counter) counter.textContent = '0/500';
+}
+
+// ===== MISSING ADMIN FUNCTION =====
+function loadAdmin() {
+  // Alias for openAdmin
+  if (typeof openAdmin === 'function') openAdmin();
+}
+
+// ===== MISSING SITE REVIEWS =====
+function getSiteReviews() {
+  // Alias for loadSiteReviews
+  if (typeof loadSiteReviews === 'function') loadSiteReviews();
+}
 
 // Init
 const savedLang = localStorage.getItem('relax_lang') || 'ar';
