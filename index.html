@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Relax | منصة إعلانات التدليك</title>
+  <link rel="alternate" hreflang="ar" href="https://amarir2019buz-ctrl.github.io/Relax---Massage/">
+  <link rel="alternate" hreflang="fr" href="https://amarir2019buz-ctrl.github.io/Relax---Massage/?lang=fr">
+  <link rel="alternate" hreflang="en" href="https://amarir2019buz-ctrl.github.io/Relax---Massage/?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://amarir2019buz-ctrl.github.io/Relax---Massage/">
 <meta name="description" content="Relax - منصة إعلانات التدليك والاسترخاء. ابحث عن أفضل خدمات التدليك الرياضي والسبا والتايلاندي في منطقتك.">
 <meta name="keywords" content="تدليك, massage, spa, relaxation, sport massage, تايلاندي, سبا">
 <meta property="og:title" content="Relax | منصة إعلانات التدليك">
@@ -226,6 +230,49 @@
 
   .footer-link{background:none;border:none;color:rgba(232,196,154,0.5);cursor:pointer;font-family:Tajawal;font-size:0.82rem;text-align:right;padding:0;transition:color 0.2s;display:block;width:100%;}
   .footer-link:hover{color:rgba(232,196,154,0.9);}
+
+  /* ===== FACEBOOK-STYLE UPLOAD ===== */
+  .upload-area{
+    border:2px dashed rgba(14,165,233,0.3);border-radius:14px;
+    text-align:center;cursor:pointer;transition:all 0.2s;
+    position:relative;overflow:hidden;background:var(--cream);
+    min-height:130px;display:flex;align-items:center;justify-content:center;
+  }
+  .upload-area:hover{border-color:#0EA5E9;background:rgba(14,165,233,0.03);}
+  .upload-area.has-image{border-style:solid;border-color:rgba(14,165,233,0.4);padding:0;display:block;}
+  .img-preview{width:100%;max-height:260px;object-fit:cover;border-radius:12px;display:none;}
+  .upload-progress{
+    position:absolute;bottom:0;left:0;right:0;
+    height:3px;background:rgba(14,165,233,0.15);display:none;overflow:hidden;
+  }
+  .upload-progress-bar{
+    height:3px;background:linear-gradient(90deg,#0EA5E9,#34D399,#F59E0B);
+    background-size:200% 100%;
+    border-radius:3px;width:0%;transition:width 0.4s ease;
+  }
+  .upload-overlay{
+    position:absolute;inset:0;background:rgba(15,43,74,0.55);
+    display:none;align-items:center;justify-content:center;
+    border-radius:12px;
+  }
+  .upload-overlay.show{display:flex;}
+  .upload-overlay-spinner{
+    width:36px;height:36px;border:3px solid rgba(255,255,255,0.25);
+    border-top:3px solid white;border-radius:50%;
+    animation:spin 0.7s linear infinite;margin:0 auto 0.5rem;
+  }
+  .upload-overlay-pct{font-family:Tajawal;font-size:1.2rem;font-weight:700;color:white;}
+  .upload-overlay-label{font-family:Tajawal;font-size:0.75rem;color:rgba(255,255,255,0.8);}
+  .btn-submit.uploading{background:linear-gradient(135deg,#0F2B4A,#1E4D7B)!important;cursor:wait;}
+  .btn-submit.success{background:linear-gradient(135deg,#059669,#047857)!important;}
+  .photo-add-btn{
+    width:70px;height:70px;border-radius:8px;border:2px dashed rgba(14,165,233,0.3);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    font-size:1.5rem;color:#0EA5E9;transition:all 0.2s;flex-shrink:0;
+    background:rgba(14,165,233,0.04);
+  }
+  .photo-add-btn:hover{border-color:#0EA5E9;background:rgba(14,165,233,0.1);}
+
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--navy);-webkit-font-smoothing:antialiased;}
@@ -902,7 +949,8 @@
   .photo-add-btn:hover{opacity:1;border-color:var(--gold);}
 
   /* ===== UPLOAD AREA ===== */
-  .upload-area{border:2px dashed rgba(61,53,41,0.2);border-radius:14px;padding:1.5rem;text-align:center;cursor:pointer;transition:all var(--transition);background:var(--cream);}
+  /* OLD upload-area */
+  .upload-area_old{border:2px dashed rgba(61,53,41,0.2);border-radius:14px;padding:1.5rem;text-align:center;cursor:pointer;transition:all var(--transition);background:var(--cream);}
   .upload-area:hover{border-color:var(--gold);background:#faf7f2;}
   .upload-area .icon{font-size:2rem;margin-bottom:0.4rem;opacity:0.7;}
   .upload-area p{font-size:0.82rem;color:var(--blue);opacity:0.65;}
@@ -1254,6 +1302,49 @@
 
   .footer-link{background:none;border:none;color:rgba(232,196,154,0.5);cursor:pointer;font-family:Tajawal;font-size:0.82rem;text-align:right;padding:0;transition:color 0.2s;display:block;width:100%;}
   .footer-link:hover{color:rgba(232,196,154,0.9);}
+
+  /* ===== FACEBOOK-STYLE UPLOAD ===== */
+  .upload-area{
+    border:2px dashed rgba(14,165,233,0.3);border-radius:14px;
+    text-align:center;cursor:pointer;transition:all 0.2s;
+    position:relative;overflow:hidden;background:var(--cream);
+    min-height:130px;display:flex;align-items:center;justify-content:center;
+  }
+  .upload-area:hover{border-color:#0EA5E9;background:rgba(14,165,233,0.03);}
+  .upload-area.has-image{border-style:solid;border-color:rgba(14,165,233,0.4);padding:0;display:block;}
+  .img-preview{width:100%;max-height:260px;object-fit:cover;border-radius:12px;display:none;}
+  .upload-progress{
+    position:absolute;bottom:0;left:0;right:0;
+    height:3px;background:rgba(14,165,233,0.15);display:none;overflow:hidden;
+  }
+  .upload-progress-bar{
+    height:3px;background:linear-gradient(90deg,#0EA5E9,#34D399,#F59E0B);
+    background-size:200% 100%;
+    border-radius:3px;width:0%;transition:width 0.4s ease;
+  }
+  .upload-overlay{
+    position:absolute;inset:0;background:rgba(15,43,74,0.55);
+    display:none;align-items:center;justify-content:center;
+    border-radius:12px;
+  }
+  .upload-overlay.show{display:flex;}
+  .upload-overlay-spinner{
+    width:36px;height:36px;border:3px solid rgba(255,255,255,0.25);
+    border-top:3px solid white;border-radius:50%;
+    animation:spin 0.7s linear infinite;margin:0 auto 0.5rem;
+  }
+  .upload-overlay-pct{font-family:Tajawal;font-size:1.2rem;font-weight:700;color:white;}
+  .upload-overlay-label{font-family:Tajawal;font-size:0.75rem;color:rgba(255,255,255,0.8);}
+  .btn-submit.uploading{background:linear-gradient(135deg,#0F2B4A,#1E4D7B)!important;cursor:wait;}
+  .btn-submit.success{background:linear-gradient(135deg,#059669,#047857)!important;}
+  .photo-add-btn{
+    width:70px;height:70px;border-radius:8px;border:2px dashed rgba(14,165,233,0.3);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    font-size:1.5rem;color:#0EA5E9;transition:all 0.2s;flex-shrink:0;
+    background:rgba(14,165,233,0.04);
+  }
+  .photo-add-btn:hover{border-color:#0EA5E9;background:rgba(14,165,233,0.1);}
+
   *{margin:0;padding:0;box-sizing:border-box;}
   body{background:var(--bg);font-family:'Tajawal',sans-serif;color:#0F2B4A;scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
 
@@ -1843,6 +1934,9 @@ if ('serviceWorker' in navigator) {
 </div>
 
 <!-- SPLASH LOGIN SCREEN (PWA only) -->
+<!-- Error Banner (created dynamically) -->
+<div id="errorBanner" style="display:none;position:fixed;top:0;left:0;right:0;z-index:9999;background:linear-gradient(135deg,#DC2626,#B91C1C);color:white;padding:0.6rem 1.2rem;font-family:Tajawal;font-size:0.85rem;font-weight:700;align-items:center;justify-content:space-between;gap:1rem;box-shadow:0 4px 12px rgba(220,38,38,0.4)"><span id="errorBannerText"></span><div style="display:flex;gap:0.5rem"><button onclick="retryFirebase()" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);color:white;border-radius:8px;padding:0.25rem 0.7rem;font-family:Tajawal;font-size:0.78rem;cursor:pointer">↺ إعادة</button><button onclick="dismissErrorBanner()" style="background:none;border:none;color:white;cursor:pointer;font-size:1rem">✕</button></div></div>
+
 <div id="splashScreen" style="display:none;position:fixed;inset:0;background:linear-gradient(135deg,#2C2318,#4A3D2E,#5C7A5A);z-index:99999;flex-direction:column;align-items:center;justify-content:center;padding:2rem;">
   <div style="text-align:center;margin-bottom:2.5rem;">
     <div style="font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:#E8C49A;letter-spacing:6px;font-style:italic;text-shadow:0 4px 20px rgba(200,152,106,0.4)">Relax</div>
@@ -2007,23 +2101,28 @@ if ('serviceWorker' in navigator) {
     <button class="filter-chip" onclick="filterByType('طب',this)" id="chipMed">💆 طبي</button>
     <button class="filter-chip" onclick="filterByType('سبا',this)" id="chipSpa">🛁 سبا</button>
     <button class="filter-chip" onclick="filterByType('تايلاندي',this)" id="chipThai">🌸 تايلاندي</button>
-    <select class="filter-select" onchange="filterByCity(this.value)" id="citySelect">
-      <option value="all">🌍 كل الدول</option>
-      <optgroup label="🇲🇦 المغرب"><option>الدار البيضاء</option><option>الرباط</option><option>مراكش</option><option>فاس</option><option>أكادير</option><option>طنجة</option></optgroup>
-      <optgroup label="🇩🇿 الجزائر"><option>الجزائر العاصمة</option><option>وهران</option><option>قسنطينة</option></optgroup>
-      <optgroup label="🇹🇳 تونس"><option>تونس العاصمة</option><option>صفاقس</option><option>سوسة</option></optgroup>
-      <optgroup label="🇪🇬 مصر"><option>القاهرة</option><option>الإسكندرية</option></optgroup>
-      <optgroup label="🇸🇦 السعودية"><option>الرياض</option><option>جدة</option></optgroup>
-      <optgroup label="🇦🇪 الإمارات"><option>دبي</option><option>أبوظبي</option></optgroup>
-      <optgroup label="🇫🇷 فرنسا"><option>باريس</option><option>مرسيليا</option><option>ليون</option></optgroup>
-      <optgroup label="🇧🇪 بلجيكا"><option>بروكسل</option><option>أنتورب</option></optgroup>
-      <optgroup label="🇳🇱 هولندا"><option>أمستردام</option><option>روتردام</option></optgroup>
-      <optgroup label="🇩🇪 ألمانيا"><option>برلين</option><option>ميونيخ</option></optgroup>
-      <optgroup label="🇪🇸 إسبانيا"><option>مدريد</option><option>برشلونة</option></optgroup>
-      <optgroup label="🇮🇹 إيطاليا"><option>روما</option><option>ميلانو</option></optgroup>
-      <optgroup label="🇹🇭 تايلاند"><option>بانكوك</option><option>بوكيت</option></optgroup>
-      <optgroup label="🇰🇷 كوريا الجنوبية"><option>سيول</option><option>بوسان</option></optgroup>
-      <optgroup label="🇨🇿 التشيك"><option>براغ</option><option>برنو</option></optgroup>
+    <!-- Country selector -->
+    <select class="filter-select" onchange="onCountryChange(this.value)" id="countrySelect" style="min-width:130px">
+      <option value="all" id="optAllCountries">🌍 كل الدول</option>
+      <option value="MA">🇲🇦 المغرب</option>
+      <option value="DZ">🇩🇿 الجزائر</option>
+      <option value="TN">🇹🇳 تونس</option>
+      <option value="EG">🇪🇬 مصر</option>
+      <option value="SA">🇸🇦 السعودية</option>
+      <option value="AE">🇦🇪 الإمارات</option>
+      <option value="FR">🇫🇷 فرنسا</option>
+      <option value="BE">🇧🇪 بلجيكا</option>
+      <option value="NL">🇳🇱 هولندا</option>
+      <option value="DE">🇩🇪 ألمانيا</option>
+      <option value="ES">🇪🇸 إسبانيا</option>
+      <option value="IT">🇮🇹 إيطاليا</option>
+      <option value="TH">🇹🇭 تايلاند</option>
+      <option value="KR">🇰🇷 كوريا</option>
+      <option value="CZ">🇨🇿 التشيك</option>
+    </select>
+    <!-- City selector (shows after country selected) -->
+    <select class="filter-select" onchange="filterByCity(this.value)" id="citySelect" style="display:none;min-width:130px">
+      <option value="all" id="optAllCities">🏙️ كل المدن</option>
     </select>
   </div>
 </div>
@@ -2615,16 +2714,34 @@ if ('serviceWorker' in navigator) {
       </div>
       <div class="form-group">
         <label id="lbImg">📸 صور الإعلان <span style="font-size:0.75rem;opacity:0.6">(حتى 4 صور)</span></label>
-        <div class="upload-area" id="mainUploadArea" onclick="document.getElementById('imgFileInput').click()">
+        <div class="upload-area" id="mainUploadArea" onclick="triggerMainImgUpload(event)">
+          <!-- Preview image -->
           <img id="imgPreview" class="img-preview" src="" alt="">
-          <div id="uploadPlaceholder">
-            <div class="icon">📸</div>
-            <p id="uploadHint">اضغط لإضافة صورة رئيسية</p>
+          <!-- Placeholder -->
+          <div id="uploadPlaceholder" style="padding:1.5rem;width:100%">
+            <div style="font-size:2.2rem;margin-bottom:0.4rem">📸</div>
+            <div style="font-family:Tajawal;font-size:0.9rem;font-weight:700;color:#1E4D7B" id="uploadHint">اضغط لإضافة صورة</div>
+            <div style="font-size:0.75rem;color:var(--warm);opacity:0.6;margin-top:0.2rem">JPG, PNG, WEBP — حتى 10MB</div>
           </div>
+          <!-- Upload overlay (Facebook style) -->
+          <div class="upload-overlay" id="uploadOverlay">
+            <div class="upload-overlay-inner">
+              <div class="upload-overlay-spinner"></div>
+              <div class="upload-overlay-pct" id="uploadPct">0%</div>
+              <div class="upload-overlay-label">جاري الرفع...</div>
+            </div>
+          </div>
+          <!-- Progress bar at bottom -->
           <div class="upload-progress" id="uploadProgress">
             <div class="upload-progress-bar" id="uploadProgressBar"></div>
           </div>
-          <input type="file" id="imgFileInput" accept="image/*" onchange="handleImgSelect(event)">
+          <!-- Edit/change button (shows after upload) -->
+          <div id="imgChangeBtn" style="display:none;position:absolute;bottom:8px;right:8px">
+            <label style="background:rgba(15,43,74,0.75);color:white;border-radius:8px;padding:0.3rem 0.7rem;font-family:Tajawal;font-size:0.75rem;font-weight:700;cursor:pointer;backdrop-filter:blur(4px);display:flex;align-items:center;gap:0.3rem">
+              ✏️ تغيير
+              <input type="file" id="imgFileInput" accept="image/*" style="display:none" onchange="handleImgSelect(event)">
+            </label>
+          </div>
         </div>
         <div class="photos-strip" id="photosStrip" style="margin-top:0.5rem;display:none">
           <div class="photo-add-btn" onclick="document.getElementById('extraImgInput').click()" title="إضافة صورة">+</div>
@@ -4189,7 +4306,17 @@ function setLang(l) {
   document.getElementById('chipMed').textContent = t.med;
   document.getElementById('chipSpa').textContent = t.spa;
   document.getElementById('chipThai').textContent = t.thai;
-  document.getElementById('citySelect').options[0].textContent = t.allCities;
+  // Update country select first option
+  const countrySelEl = document.getElementById('countrySelect');
+  if (countrySelEl && countrySelEl.options[0]) {
+    const allCountriesLabels = {ar:'🌍 كل الدول',fr:'🌍 Tous les pays',en:'🌍 All countries',th:'🌍 ทุกประเทศ',ko:'🌍 모든 나라',ru:'🌍 Все страны',tr:'🌍 Tüm ülkeler',nl:'🌍 Alle landen',de:'🌍 Alle Länder',es:'🌍 Todos los países',it:'🌍 Tutti i paesi',pl:'🌍 Wszystkie kraje'};
+    countrySelEl.options[0].textContent = allCountriesLabels[l] || '🌍 All countries';
+  }
+  const citySelEl = document.getElementById('citySelect');
+  if (citySelEl && citySelEl.options[0]) {
+    const allCitiesLabels = {ar:'🏙️ كل المدن',fr:'🏙️ Toutes les villes',en:'🏙️ All cities',th:'🏙️ ทุกเมือง',ko:'🏙️ 모든 도시',ru:'🏙️ Все города',tr:'🏙️ Tüm şehirler',nl:'🏙️ Alle steden',de:'🏙️ Alle Städte',es:'🏙️ Todas las ciudades',it:'🏙️ Tutte le città',pl:'🏙️ Wszystkie miasta'};
+    citySelEl.options[0].textContent = allCitiesLabels[l] || '🏙️ All cities';
+  }
   document.getElementById('priceLabel').textContent = t.priceLabel;
   document.getElementById('ageLabel').textContent = t.ageLabel;
   document.getElementById('fromLabel').textContent = t.from;
@@ -4460,6 +4587,9 @@ function resetFilters() {
   activeType='all'; activeCity='all';
   availNowMode=false;
   document.getElementById('searchInput').value='';
+    activeCountry = 'all';
+    const cSel = document.getElementById('countrySelect'); if(cSel) cSel.value='all';
+    const citySel = document.getElementById('citySelect'); if(citySel) { citySel.style.display='none'; citySel.value='all'; }
   document.getElementById('priceMin').value=0;
   document.getElementById('priceMax').value=2000;
   document.getElementById('ageMin').value=18;
@@ -4522,25 +4652,9 @@ async function loadListings() {
 }
 
 function updateCityFilter() {
-  const select = document.getElementById('citySelect');
-  if (!select) return;
-  // Get unique cities from real listings
-  const cities = [...new Set(allListings.map(a => a.city).filter(Boolean))].sort();
-  // Keep first option (all cities)
-  const firstOpt = select.options[0];
-  select.innerHTML = '';
-  select.appendChild(firstOpt);
-  // Add "from listings" group
-  if (cities.length) {
-    const group = document.createElement('optgroup');
-    group.label = '📍 المدن المتاحة';
-    cities.forEach(c => {
-      const opt = document.createElement('option');
-      opt.value = c; opt.textContent = c;
-      group.appendChild(opt);
-    });
-    select.appendChild(group);
-  }
+  // Now handled by country→city system — just update stats
+  const statEl = document.getElementById('statAdsCount');
+  if (statEl) statEl.textContent = allListings.length + '+';
 }
 
 // Type images/colors
@@ -4697,11 +4811,13 @@ function applyFilters() {
   const genderVal=document.getElementById('genderFilter')?.value||'all';
   const mobileVal=document.getElementById('mobileFilter')?.value||'all';
   const source = showingFavs ? allListings.filter(l=>favorites.has(l.id)) : allListings;
+  // Country filter
+  const countryFiltered = activeCountry === 'all' ? source : source.filter(a => isCityInCountry(a.city, activeCountry));
 
   // "Available now" = today's day of week is in their availability array
   const todayDay = new Date().getDay();
 
-  filtered=source.filter(l=>{
+  filtered=countryFiltered.filter(l=>{
     const mt=activeType==='all'||l.type?.includes(activeType);
     const mc=activeCity==='all'||l.city===activeCity;
     const mq=!q||l.title?.toLowerCase().includes(q)||l.desc?.toLowerCase().includes(q);
@@ -4987,11 +5103,16 @@ async function submitAd() {
 
   let imgUrl = null;
   try {
-    // Upload image if selected
-    if (selectedImgFile) {
+    // Use pre-uploaded URL or upload now
+    if (uploadedImgUrl) {
+      imgUrl = uploadedImgUrl;
+    } else if (selectedImgFile) {
       btn.textContent = '📸 جاري رفع الصورة...';
+      btn.classList.add('uploading');
       imgUrl = await uploadToCloudinary(selectedImgFile);
     }
+    btn.textContent = '📝 جاري النشر...';
+    btn.classList.remove('uploading');
 
     const {collection,addDoc,serverTimestamp}=window._fbModules;
     const ref=await addDoc(collection(window._db,'listings'),{
@@ -5019,8 +5140,12 @@ async function submitAd() {
     document.querySelectorAll('#postAvailGrid .avail-day').forEach(el => el.classList.remove('active'));
     renderListings();
     trackEvent('post_ad', 'engagement', type);
+    // Success flash
+    btn.classList.add('success');
+    btn.textContent = '✅ تم النشر!';
+    await new Promise(r => setTimeout(r, 800));
     closePostModal();
-    showToast('✅ تم نشر إعلانك بنجاح!');
+    showToast('🎉 تم نشر إعلانك بنجاح!');
     ['adTitle','adDesc','adPrice','adAge','adPhone','adCoupon'].forEach(id => {
     const el = document.getElementById(id); if(el) el.value='';
   });
@@ -5034,14 +5159,22 @@ async function submitAd() {
   initLangCheckGroup(); // re-init with defaults
     selectedImgFile = null;
     uploadedImgUrl = null;
-    document.getElementById('imgPreview').style.display = 'none';
-    document.getElementById('uploadPlaceholder').style.display = 'block';
-    document.getElementById('imgFileInput').value = '';
+    const previewEl = document.getElementById('imgPreview');
+    const phEl = document.getElementById('uploadPlaceholder');
+    const changeBtnEl = document.getElementById('imgChangeBtn');
+    const uploadAreaEl = document.getElementById('mainUploadArea');
+    if (previewEl) { previewEl.style.display = 'none'; previewEl.src = ''; }
+    if (phEl) phEl.style.display = 'flex';
+    if (changeBtnEl) changeBtnEl.style.display = 'none';
+    if (uploadAreaEl) uploadAreaEl.classList.remove('has-image');
+    const imgInput = document.getElementById('imgFileInput');
+    if (imgInput) imgInput.value = '';
   } catch(e){
     console.error(e);
     showToast('❌ خطأ في النشر، جرب مرة أخرى', true);
   }
   btn.disabled=false;
+  btn.classList.remove('uploading','success');
   btn.textContent='نشر الإعلان مجاناً 🚀';
 }
 
@@ -6495,23 +6628,118 @@ async function fileToBase64(file) {
   });
 }
 
+function triggerMainImgUpload(e) {
+  // Don't trigger if clicking on inner elements like the change button
+  if (e.target.closest('#imgChangeBtn') || e.target.tagName === 'INPUT') return;
+  const hasImg = document.getElementById('imgPreview')?.style.display === 'block';
+  if (!hasImg) document.getElementById('imgFileInput').click();
+}
+
 function handleImgSelect(e) {
   const file = e.target.files[0];
   if (!file) return;
-  // Validate type & size
   if (!file.type.startsWith('image/')) { showToast('⚠️ اختر صورة فقط', true); return; }
   if (file.size > 10 * 1024 * 1024) { showToast('⚠️ الصورة أكبر من 10MB', true); return; }
   selectedImgFile = file;
+  uploadedImgUrl = null; // reset
+
+  // 1. Instant local preview (like Facebook)
   const reader = new FileReader();
   reader.onload = ev => {
     const preview = document.getElementById('imgPreview');
-    if (preview) { preview.src = ev.target.result; preview.style.display = 'block'; }
     const ph = document.getElementById('uploadPlaceholder');
+    const changeBtn = document.getElementById('imgChangeBtn');
+    const area = document.getElementById('mainUploadArea');
+    if (preview) { preview.src = ev.target.result; preview.style.display = 'block'; }
     if (ph) ph.style.display = 'none';
+    if (changeBtn) changeBtn.style.display = 'block';
+    if (area) area.classList.add('has-image');
     const strip = document.getElementById('photosStrip');
     if (strip) strip.style.display = 'flex';
   };
   reader.readAsDataURL(file);
+
+  // 2. Upload in background immediately
+  uploadImgInBackground(file);
+}
+
+async function uploadImgInBackground(file) {
+  const overlay = document.getElementById('uploadOverlay');
+  const pct = document.getElementById('uploadPct');
+  const progressBar = document.getElementById('uploadProgressBar');
+  const progressDiv = document.getElementById('uploadProgress');
+  const submitBtn = document.getElementById('submitBtn');
+
+  // Show overlay + progress
+  if (overlay) overlay.classList.add('show');
+  if (progressDiv) progressDiv.style.display = 'block';
+  if (progressBar) progressBar.style.width = '5%';
+  if (submitBtn) { submitBtn.disabled = true; submitBtn.classList.add('uploading'); submitBtn.textContent = '📸 جاري رفع الصورة...'; }
+
+  try {
+    // Compress first
+    const compressed = await compressImage(file);
+    if (progressBar) progressBar.style.width = '20%';
+    if (pct) pct.textContent = '20%';
+
+    // Upload with XHR for progress tracking
+    const url = await uploadWithProgress(compressed, (progress) => {
+      const total = 20 + Math.round(progress * 0.78);
+      if (progressBar) progressBar.style.width = total + '%';
+      if (pct) pct.textContent = total + '%';
+    });
+
+    uploadedImgUrl = url;
+    selectedImgFile = null; // already uploaded
+
+    // Success animation
+    if (progressBar) progressBar.style.width = '100%';
+    if (pct) pct.textContent = '✓';
+    if (overlay) overlay.classList.remove('show');
+    if (progressDiv) { progressDiv.style.background = 'rgba(5,150,105,0.2)'; }
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('uploading');
+      submitBtn.textContent = 'نشر الإعلان مجاناً 🚀';
+    }
+    showToast('✅ الصورة جاهزة!');
+
+    // Reset progress bar after 1s
+    setTimeout(() => {
+      if (progressBar) progressBar.style.width = '0%';
+      if (progressDiv) { progressDiv.style.display = 'none'; progressDiv.style.background = ''; }
+    }, 1000);
+
+  } catch(err) {
+    console.error('Upload error:', err);
+    if (overlay) overlay.classList.remove('show');
+    if (progressDiv) progressDiv.style.display = 'none';
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.classList.remove('uploading'); submitBtn.textContent = 'نشر الإعلان مجاناً 🚀'; }
+    // Keep local preview, will use selectedImgFile on submit
+    selectedImgFile = file;
+    showToast('⚠️ سيتم رفع الصورة عند النشر', false);
+  }
+}
+
+async function uploadWithProgress(file, onProgress) {
+  return new Promise((resolve, reject) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', 'relax_upload');
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://api.cloudinary.com/v1_1/dhyqowfxt/image/upload');
+    xhr.upload.onprogress = (e) => {
+      if (e.lengthComputable) onProgress(e.loaded / e.total);
+    };
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        const data = JSON.parse(xhr.responseText);
+        resolve(data.secure_url);
+      } else reject(new Error('Upload failed: ' + xhr.status));
+    };
+    xhr.onerror = () => reject(new Error('Network error'));
+    xhr.send(formData);
+  });
 }
 
 // Smart upload: Firebase Storage → Cloudinary fallback → Base64 fallback
@@ -9240,15 +9468,10 @@ let _firebaseErrorCount = 0;
 let _offlineMode = false;
 
 function showErrorBanner(msg) {
-  let banner = document.getElementById('errorBanner');
-  if (!banner) {
-    banner = document.createElement('div');
-    banner.id = 'errorBanner';
-    banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:linear-gradient(135deg,#DC2626,#B91C1C);color:white;padding:0.6rem 1.2rem;font-family:Tajawal;font-size:0.85rem;font-weight:700;display:flex;align-items:center;justify-content:space-between;gap:1rem;box-shadow:0 4px 12px rgba(220,38,38,0.4);animation:slideDown 0.3s ease';
-    banner.innerHTML = `<span id="errorBannerText"></span><div style="display:flex;gap:0.5rem"><button onclick="retryFirebase()" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);color:white;border-radius:8px;padding:0.25rem 0.7rem;font-family:Tajawal;font-size:0.78rem;cursor:pointer">↺ إعادة المحاولة</button><button onclick="dismissErrorBanner()" style="background:none;border:none;color:white;cursor:pointer;font-size:1rem">✕</button></div>`;
-    document.body.prepend(banner);
-  }
-  document.getElementById('errorBannerText').textContent = msg;
+  const banner = document.getElementById('errorBanner');
+  if (!banner) return;
+  const textEl = document.getElementById('errorBannerText');
+  if (textEl) textEl.textContent = msg;
   banner.style.display = 'flex';
 }
 
@@ -9662,9 +9885,83 @@ function getSiteReviews() {
   if (typeof loadSiteReviews === 'function') loadSiteReviews();
 }
 
+// ===== COUNTRY → CITY FILTER =====
+const COUNTRY_CITIES = {
+  MA: ['الدار البيضاء','الرباط','مراكش','فاس','أكادير','طنجة','مكناس','وجدة'],
+  DZ: ['الجزائر العاصمة','وهران','قسنطينة','عنابة','سطيف','تلمسان','بجاية'],
+  TN: ['تونس العاصمة','صفاقس','سوسة','القيروان','بنزرت','قابس','نابل'],
+  EG: ['القاهرة','الإسكندرية','الجيزة','الأقصر','أسوان','شرم الشيخ','الغردقة'],
+  SA: ['الرياض','جدة','مكة المكرمة','المدينة المنورة','الدمام','أبها'],
+  AE: ['دبي','أبوظبي','الشارقة','عجمان','رأس الخيمة','الفجيرة'],
+  FR: ['باريس','مرسيليا','ليون','تولوز','نيس','بوردو','ليل'],
+  BE: ['بروكسل','أنتورب','غنت','بروج','لييج'],
+  NL: ['أمستردام','روتردام','لاهاي','أوتريخت','إيندهوفن'],
+  DE: ['برلين','ميونيخ','هامبورغ','فرانكفورت','كولونيا','شتوتغارت'],
+  ES: ['مدريد','برشلونة','إشبيلية','فالنسيا','بيلباو','مالقا'],
+  IT: ['روما','ميلانو','نابولي','تورينو','فلورنسا','البندقية'],
+  TH: ['بانكوك','شيانغ ماي','بوكيت','باتايا','هوا هين'],
+  KR: ['سيول','بوسان','إينشيون','دايغو','دايجون'],
+  CZ: ['براغ','برنو','أوسترافا','بيلسن'],
+};
+
+let activeCountry = 'all';
+
+function onCountryChange(countryCode) {
+  activeCountry = countryCode;
+  const citySelect = document.getElementById('citySelect');
+  if (!citySelect) return;
+  if (countryCode === 'all') {
+    citySelect.style.display = 'none';
+    citySelect.value = 'all';
+    activeCity = 'all';
+    applyFilters();
+    return;
+  }
+  const predefined = COUNTRY_CITIES[countryCode] || [];
+  const fromListings = [...new Set(
+    allListings.filter(a => predefined.includes(a.city)).map(a => a.city).filter(Boolean)
+  )];
+  const withAds = predefined.filter(c => fromListings.includes(c));
+  const withoutAds = predefined.filter(c => !fromListings.includes(c));
+  citySelect.innerHTML = '<option value="all">🏙️ كل المدن</option>';
+  if (withAds.length) {
+    const g1 = document.createElement('optgroup');
+    g1.label = '✅ مدن فيها إعلانات';
+    withAds.forEach(c => { const o = document.createElement('option'); o.value=c; o.textContent=c; g1.appendChild(o); });
+    citySelect.appendChild(g1);
+  }
+  if (withoutAds.length) {
+    const g2 = document.createElement('optgroup');
+    g2.label = '🏙️ مدن أخرى';
+    withoutAds.forEach(c => { const o = document.createElement('option'); o.value=c; o.textContent=c; g2.appendChild(o); });
+    citySelect.appendChild(g2);
+  }
+  citySelect.style.display = 'block';
+  activeCity = 'all';
+  applyFilters();
+}
+
+function isCityInCountry(city, countryCode) {
+  if (!city || !countryCode || countryCode === 'all') return true;
+  return (COUNTRY_CITIES[countryCode] || []).includes(city);
+}
+
+
 // Init
-const savedLang = localStorage.getItem('relax_lang') || 'ar';
-if (savedLang !== 'ar') setLang(savedLang);
+// Language init — check URL param first, then localStorage
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+const savedLang = urlLang || localStorage.getItem('relax_lang') || 'ar';
+// Apply after DOM is ready
+if (savedLang !== 'ar') {
+  // Wait for DOM elements to exist
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => setLang(savedLang));
+  } else {
+    setLang(savedLang);
+  }
+} else {
+  lang = 'ar';
+}
 document.getElementById('favCount').textContent = favorites.size;
 
 // Fix race condition: Firebase module may fire 'firebaseReady' before this listener registers
